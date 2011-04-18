@@ -2,4 +2,6 @@
 <resources>
     <string name="hello">Hello World, ActivityBrezskrbnik!</string>
     <string name="app_name">brezskrbnik</string>
+    <string name="btnNastaviBudilko">Nastavi mi budilko na _:_</string>
+    <string name="btnNastaviOpomnik">Dodaj mi opomnik</string>
 </resources>
