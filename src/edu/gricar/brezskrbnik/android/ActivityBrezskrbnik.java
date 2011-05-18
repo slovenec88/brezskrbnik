@@ -1,6 +1,8 @@
 package edu.gricar.brezskrbnik.android;
 
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -10,11 +12,14 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class ActivityBrezskrbnik extends Activity {
-    /** Called when the activity is first created. */
+	ApplicationBrezskrbnik app;
+    private static final int TEST_LIST_ACTIVITY_ID = 0;
+	/** Called when the activity is first created. */
 	
 	
 	ProgressBar progressBar;
     Button buttonStartProgress;
+    Button button31;
 	
     public class BackgroundAsyncTask extends
     AsyncTask<Void, Integer, Void> {
@@ -25,7 +30,7 @@ public class ActivityBrezskrbnik extends Activity {
   protected void onPostExecute(Void result) {
    // TODO Auto-generated method stub
    Toast.makeText(ActivityBrezskrbnik.this,
-         "zaèetek", Toast.LENGTH_LONG).show();
+         "konec", Toast.LENGTH_LONG).show();
    buttonStartProgress.setClickable(true);
   }
 
@@ -33,7 +38,7 @@ public class ActivityBrezskrbnik extends Activity {
   protected void onPreExecute() {
    // TODO Auto-generated method stub
    Toast.makeText(ActivityBrezskrbnik.this,
-         "konec", Toast.LENGTH_LONG).show();
+         "zaèetek", Toast.LENGTH_LONG).show();
    myProgress = 0;
   }
 
@@ -74,8 +79,15 @@ public class ActivityBrezskrbnik extends Activity {
        new BackgroundAsyncTask().execute();
        buttonStartProgress.setClickable(false);
       }});
+   
         
     }
+    
+    
+    public void button1(View v) {
+    	Intent moj2=new Intent(this,KjeSemActivity.class);
+		this.startActivity(moj2);
+       }
     
     
     
