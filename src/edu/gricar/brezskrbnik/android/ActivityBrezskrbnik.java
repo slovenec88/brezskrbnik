@@ -1,6 +1,8 @@
 package edu.gricar.brezskrbnik.android;
 
 
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -67,27 +69,58 @@ public class ActivityBrezskrbnik extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        buttonStartProgress = (Button)findViewById(R.id.startprogress);
-        progressBar = (ProgressBar)findViewById(R.id.progressbar_Horizontal);
-        progressBar.setProgress(0);
+        ///uttonStartProgress = (Button)findViewById(R.id.startprogress);
+        //progressBar = (ProgressBar)findViewById(R.id.progressbar_Horizontal);
+        //progressBar.setProgress(0);
      
-        buttonStartProgress.setOnClickListener(new Button.OnClickListener(){
+       // buttonStartProgress.setOnClickListener(new Button.OnClickListener(){
 
-      @Override
-      public void onClick(View v) {
-       // TODO Auto-generated method stub
-       new BackgroundAsyncTask().execute();
-       buttonStartProgress.setClickable(false);
-      }});
+      
+        
    
         
     }
     
+    public void onNavigacija(View v) {
+    	Toast toast =Toast.makeText(this, "Iskanje satelitov", Toast.LENGTH_LONG);
+
+		toast.show();
+		Intent i = new Intent(this.getApplicationContext(), KjeSemActivity.class);
+    	startActivity(i);
+
+	}
     
-    public void button1(View v) {
+    
+    public void onBudilka(View v) {
+    	Toast toast =Toast.makeText(this, "Budilka", Toast.LENGTH_LONG);
+
+		toast.show();
+		Intent i = new Intent(this.getApplicationContext(), ActivityBudilka.class);
+    	startActivity(i);
+
+	}
+    
+    public void onPomoc(View v) {
+    	Toast toast =Toast.makeText(this, "Pomoè", Toast.LENGTH_LONG);
+
+		toast.show();
+		Intent i = new Intent(this.getApplicationContext(), ActivityAsistenca.class);
+    	startActivity(i);
+	}
+    
+    public void onOpomniki(View v) {
+    	Toast toast =Toast.makeText(this, "Opomniki", Toast.LENGTH_LONG);
+
+		toast.show();
+		Intent i = new Intent(this.getApplicationContext(), Opomniki.class);
+    	startActivity(i);
+	}
+    
+    
+    /*public void button1(View v) {
     	Intent moj2=new Intent(this,KjeSemActivity.class);
 		this.startActivity(moj2);
-       }
+       }*/
     
     
     

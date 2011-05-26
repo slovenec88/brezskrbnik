@@ -39,21 +39,6 @@ public class ApplicationBrezskrbnik extends Application {
 		addDB(tmp);
 	}
 	
-	/*public void fillFromDB() {
-		db.open();
-		Cursor c = db.getAll();
-		Rezultati tmp;
-		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-			tmp = new Rezultati();
-			tmp.setIme(c.getString(DBAdapterStevec.POS_IME));
-			tmp.setSt_ugibanj(c.getInt(DBAdapterStevec.POS_ST_UGIBANJ));
-			tmp.setDbID(c.getLong(DBAdapterStevec.POS__ID));
-			tmp.setDatum(c.getString(DBAdapterStevec.POS_DATUM));
-			lista.add(tmp); 
-		}
-		c.close();
-		db.close();
-	}*/
 	
 	public void addDB(Opomniki r) {
 		db.open();
