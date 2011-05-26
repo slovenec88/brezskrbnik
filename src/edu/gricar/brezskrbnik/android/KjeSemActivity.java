@@ -43,9 +43,10 @@ public class KjeSemActivity extends MapActivity {
 		MapView myMapView = (MapView)findViewById(R.id.myMapView);
 		mapController = myMapView.getController();
 
-		myMapView.setSatellite(true);
-		myMapView.setStreetView(true);
-		myMapView.displayZoomControls(false);
+		myMapView.setSatellite(false);
+		myMapView.setStreetView(false);
+		myMapView.displayZoomControls(true);
+		myMapView.setTraffic(false);
 
 		mapController.setZoom(17);
 
