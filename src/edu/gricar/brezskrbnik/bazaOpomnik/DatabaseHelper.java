@@ -9,8 +9,8 @@ public  class DatabaseHelper extends SQLiteOpenHelper
 {	
 
 	public static final  String TAG="DatabaseHelper";
-	private static final int DATABASE_VERSION = 2;
-	private static final String DATABASE_NAME = "mojtest";
+	private static final int DATABASE_VERSION = 3;
+	private static final String DATABASE_NAME = "baza";
 	private static final String DATABASE_CREATE =
 		"create table "+DBAdapterStevec.TABLE+" ("+DBAdapterStevec._ID+" integer primary key autoincrement, "
 		+ DBAdapterStevec.IDL+" INTEGER, "+DBAdapterStevec.IDS+" INTEGER, " +DBAdapterStevec.SPREM+" BOOLEAN, "

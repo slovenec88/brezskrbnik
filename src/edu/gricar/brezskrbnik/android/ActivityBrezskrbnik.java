@@ -114,6 +114,9 @@ public class ActivityBrezskrbnik extends Activity {
 		toast.show();
 		Intent i = new Intent(this.getApplicationContext(), Opomniki.class);
     	startActivity(i);
+    
+    	Opomniki a = new Opomniki();
+    	a.dodajVKoledar();
 	}
     
     

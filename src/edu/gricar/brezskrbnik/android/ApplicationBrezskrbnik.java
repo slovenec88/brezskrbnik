@@ -3,6 +3,7 @@ package edu.gricar.brezskrbnik.android;
 import java.util.ArrayList;
 import edu.gricar.brezskrbnik.bazaOpomnik.DBAdapterStevec;
 import android.app.Application;
+import android.widget.Toast;
 
 
 
@@ -19,6 +20,14 @@ public class ApplicationBrezskrbnik extends Application {
         super.onCreate(); //ne pozabi
         db = new DBAdapterStevec(this); 
         init();// na zacetku prazen
+        
+        db.open();
+        
+        Toast toast =Toast.makeText(this, "Vda", Toast.LENGTH_LONG);
+
+		toast.show();
+        
+        addRezultat();
 	}
 	
 	
@@ -32,8 +41,9 @@ public class ApplicationBrezskrbnik extends Application {
 		
 		}
 	
-	public void addRezultat(int st_ugibanj) {
+	public void addRezultat() {
 		Opomniki tmp = new Opomniki();
+		
 		tmp.setId_l(5);
 		tmp.setPodatki("gla");
 		addDB(tmp);
