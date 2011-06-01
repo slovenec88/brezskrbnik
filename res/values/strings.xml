@@ -4,4 +4,8 @@
     <string name="app_name">brezskrbnik</string>
     <string name="btnNastaviBudilko">Nastavi mi budilko na _:_</string>
     <string name="btnNastaviOpomnik">Dodaj mi opomnik</string>
+    <string name="alarm_txt">Moje besedilo</string>
+    <string name="alarm_stop">Stop alarm</string>
+    <string name="alarm_start">START alarm</string>
+     <string name="alarm_name">AlarmTest</string>
 </resources>

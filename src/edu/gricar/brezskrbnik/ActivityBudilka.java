@@ -1,5 +1,6 @@
-package edu.gricar.brezskrbnik.android;
+package edu.gricar.brezskrbnik;
 
+import edu.gricar.brezskrbnik.R;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;

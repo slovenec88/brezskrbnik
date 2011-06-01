@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="edu.gricar.brezskrbnik.android"
+      package="edu.gricar.brezskrbnik"
       android:versionCode="1"
       android:versionName="1.0">
 
 
-    <application android:name="ApplicationBrezskrbnik" android:icon="@drawable/icon" android:label="@string/app_name">
+    <application android:name="edu.gricar.brezskrbnik.ApplicationBrezskrbnik" android:icon="@drawable/icon" android:label="@string/app_name">
     <uses-library android:name="com.google.android.maps" />
-        <activity android:name=".ActivityBrezskrbnik"
-                  android:label="@string/app_name">
+        <activity android:label="@string/app_name" android:name="ActivityBrezskrbnik">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityAsistenca"
-                  android:label="@string/app_name">
+        <activity android:label="@string/app_name" android:name="ActivityAsistenca">
             <intent-filter>
 
             </intent-filter>
@@ -26,26 +24,32 @@
 
             </intent-filter>
         </activity>
-		<activity android:name="KjeSemActivity" android:label="@string/app_name">
+		<activity android:label="@string/app_name" android:name="KjeSemActivity">
 			<intent-filter>
 
 			</intent-filter>
 		</activity>
-		<activity android:name="ActivityBudilka" android:label="@string/app_name">
+		<activity android:label="@string/app_name" android:name="ActivityBudilka">
 			<intent-filter>
 
 			</intent-filter>
 		</activity>
-		<activity android:name="Opomniki" android:label="@string/app_name">
+		<activity android:label="@string/app_name" android:name="Opomniki">
 			<intent-filter>
 
 			</intent-filter>
 		</activity>
-			<activity android:name="CalendarActivity" android:label="@string/app_name">
+			<activity android:label="@string/app_name" android:name="CalendarActivity">
 			<intent-filter>
 
 			</intent-filter>
 		</activity>	
+		<activity android:label="@string/app_name" android:name=".budilka.AlarmActivity">
+			<intent-filter>
+			</intent-filter>
+		</activity>	
+		 <service android:name=".budilka.MyAlarmService" android:process=":remote" />
+			
 
     </application>
     	<uses-permission android:name="android.permission.INTERNET" />

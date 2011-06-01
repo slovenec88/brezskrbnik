@@ -1,4 +1,4 @@
-package edu.gricar.brezskrbnik.android;
+package edu.gricar.brezskrbnik;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -7,14 +7,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
-
-
-
 import java.net.*;
 import java.io.*;
 
-
-
+import edu.gricar.brezskrbnik.R;
 
 public class Opomniki extends Activity {
 	private static final String DEBUG_TAG = null;

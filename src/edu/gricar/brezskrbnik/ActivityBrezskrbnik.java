@@ -1,8 +1,7 @@
-package edu.gricar.brezskrbnik.android;
+package edu.gricar.brezskrbnik;
 
-
-
-
+import edu.gricar.brezskrbnik.R;
+import edu.gricar.brezskrbnik.budilka.AlarmActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 public class ActivityBrezskrbnik extends Activity {
 	ApplicationBrezskrbnik app;
     private static final int TEST_LIST_ACTIVITY_ID = 0;
+    public static final String PREF_NAME="PREF_STEVCI";
 	/** Called when the activity is first created. */
 	
 	
@@ -95,7 +95,7 @@ public class ActivityBrezskrbnik extends Activity {
     	Toast toast =Toast.makeText(this, "Budilka", Toast.LENGTH_LONG);
 
 		toast.show();
-		Intent i = new Intent(this.getApplicationContext(), ActivityBudilka.class);
+		Intent i = new Intent(this.getApplicationContext(), AlarmActivity.class);
     	startActivity(i);
 
 	}

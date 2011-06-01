@@ -1,4 +1,4 @@
-package edu.gricar.brezskrbnik.android;
+package edu.gricar.brezskrbnik;
 
 /*
 * Copyright (c) 2010, Lauren Darcey and Shane Conder
@@ -50,6 +50,7 @@ package edu.gricar.brezskrbnik.android;
 */
 
 
+import edu.gricar.brezskrbnik.R;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -67,6 +68,7 @@ public class CalendarActivity extends Activity {
    public void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.opomniki2);
+       ListAllCalendarEntries(2);
        info = (TextView) this.findViewById(R.id.textViewInfo);
        try {
            Log.i(DEBUG_TAG, "Starting Calendar Test");
@@ -87,7 +89,7 @@ public class CalendarActivity extends Activity {
 
                Uri newEvent = MakeNewCalendarEntry(iTestCalendarID);
                int eventID = Integer.parseInt(newEvent.getLastPathSegment());
-               ListCalendarEntry(eventID);
+               //ListCalendarEntry(eventID);
                
                // uncomment these to show updating and deleting entries
 
@@ -96,7 +98,7 @@ public class CalendarActivity extends Activity {
                //DeleteCalendarEntry(eventID);
                
                //ListCalendarEntrySummary(eventID);
-              // ListAllCalendarEntries(iTestCalendarID);
+               ListAllCalendarEntries(2);
            } else {
                Log.i(DEBUG_TAG, "No 'Test' calendar found.");
            }
@@ -183,6 +185,8 @@ public class CalendarActivity extends Activity {
                for (int i = 0; i < managedCursor.getColumnCount(); i++) {
                    Log.i(DEBUG_TAG, managedCursor.getColumnName(i) + "="
                            + managedCursor.getString(i));
+                   
+                   
                }
                Log.i(DEBUG_TAG, "**END Calendar Event Description**");
            } while (managedCursor.moveToNext());

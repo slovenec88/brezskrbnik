@@ -1,4 +1,4 @@
-package edu.gricar.brezskrbnik.android;
+package edu.gricar.brezskrbnik;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,7 +9,7 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 
-import edu.gricar.brezskrbnik.android.R;
+import edu.gricar.brezskrbnik.R;
 
 import android.content.Context;
 import android.location.Address;

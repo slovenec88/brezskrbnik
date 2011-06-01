@@ -1,4 +1,4 @@
-package edu.gricar.brezskrbnik.android;
+package edu.gricar.brezskrbnik;
 
 import java.util.ArrayList;
 
