@@ -112,11 +112,17 @@ public class ActivityBrezskrbnik extends Activity {
     	Toast toast =Toast.makeText(this, "Opomniki", Toast.LENGTH_LONG);
 
 		toast.show();
-		Intent i = new Intent(this.getApplicationContext(), Opomniki.class);
+//CalendarActivity
+		Intent i = new Intent(this.getApplicationContext(), CalendarActivity.class);
+    	startActivity(i);
+    
+    	    	/*
+    	 * Intent i = new Intent(this.getApplicationContext(), Opomniki.class);
     	startActivity(i);
     
     	Opomniki a = new Opomniki();
     	a.dodajVKoledar();
+    	 */
 	}
     
     

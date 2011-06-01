@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -16,6 +17,9 @@ import java.io.*;
 
 
 public class Opomniki extends Activity {
+	private static final String DEBUG_TAG = null;
+
+
 	ApplicationBrezskrbnik app;
 
 
@@ -64,7 +68,14 @@ public class Opomniki extends Activity {
 	Uri calendars = Uri.parse("content://calendar/calendars");
 	     
 	     
-	Cursor managedCursor = managedQuery(calendars, projection, null, null, null);
+	//Cursor managedCursor = managedQuery(calendars, projection, "selected=1", null, null);
+	
+	   //String[] projection = new String[] { "_id", "name" };
+       String selection = "selected=1";
+       String path = "calendars";
+
+       Cursor managedCursor = getCalendarManagedCursor(projection, selection,
+               path);
 	
 	/*Cursor managedCursor =
 	  managedQuery(calendars, projection, "selected=1", null, null);*/
@@ -126,7 +137,39 @@ public class Opomniki extends Activity {
 	    
 	    }
 	}*/
-	
+	 /**
+	    * @param projection
+	    * @param selection
+	    * @param path
+	    * @return
+	    */
+	   private Cursor getCalendarManagedCursor(String[] projection,
+	           String selection, String path) {
+	       Uri calendars = Uri.parse("content://calendar/" + path);
+
+	       Cursor managedCursor = null;
+	       try {
+	           managedCursor = managedQuery(calendars, projection, selection,
+	                   null, null);
+	       } catch (Exception e) {
+	           Log.w(DEBUG_TAG, "Failed to get provider at ["
+	                   + calendars.toString() + "]");
+	       }
+
+	       if (managedCursor == null) {
+	           // try again
+	           calendars = Uri.parse("content://com.android.calendar/" + path);
+	           try {
+	               managedCursor = managedQuery(calendars, projection, selection,
+	                       null, null);
+	           } catch (IllegalArgumentException e) {
+	               Log.w(DEBUG_TAG, "Failed to get provider at ["
+	                       + calendars.toString() + "]");
+	           }
+	       }
+	       return managedCursor;
+	   }
+
 }
 
 
