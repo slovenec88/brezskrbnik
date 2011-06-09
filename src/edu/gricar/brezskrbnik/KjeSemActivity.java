@@ -12,17 +12,20 @@ import com.google.android.maps.Overlay;
 import edu.gricar.brezskrbnik.R;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
 
 public class KjeSemActivity extends MapActivity {
 	ApplicationBrezskrbnik app;
+	double lat, lng;
 	@Override
 	protected boolean isRouteDisplayed() {
 		return false;
@@ -33,6 +36,7 @@ public class KjeSemActivity extends MapActivity {
 	//http://code.google.com/android/maps-api-signup.html
 	MapController mapController;
 	MyPositionOverlay positionOverlay;
+	String latLongString;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,8 @@ public class KjeSemActivity extends MapActivity {
 
 		locationManager.requestLocationUpdates(provider, 2000, 10,   
 				locationListener);
+		
+		
 
 	}
 
@@ -89,8 +95,8 @@ public class KjeSemActivity extends MapActivity {
 				Bundle extras){ }
 	};
 
-	private void my_updateWithNewLocation(Location location) {
-		String latLongString;
+	public void my_updateWithNewLocation(Location location) {
+		
 		TextView myLocationText;
 		myLocationText = (TextView)findViewById(R.id.myLocationText);
 
@@ -104,12 +110,30 @@ public class KjeSemActivity extends MapActivity {
 
 			mapController.animateTo(point);
 
-			double lat = location.getLatitude();
-			double lng = location.getLongitude();
+			lat = location.getLatitude();
+			lng = location.getLongitude();
 			latLongString = "Lat:" + lat + "\nLong:" + lng;
 
 			myLocationText.setText("Trenutni položaj je:" + 
 					latLongString); 
+			
+		
+			
+			Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
+					Uri.parse("http://maps.google.com/maps?saddr="+lat+","+lng+"&daddr=5+Dobletinska+ulica,"));
+			startActivity(intent);
+			
+			
+			
 		}
+	}
+	
+	public String vrniLokacijo(){
+		
+		latLongString = "Lat:" + lat + "\nLong:" + lng;
+
+		
+		
+		return latLongString;
 	}
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- Display settings -->
+	<PreferenceCategory android:title="Težavnost">
+			<ListPreference android:key="FREQENCY" android:title="Težavnosti"
+    android:summary="Težavnost od 10-100" android:entries="@array/min_log_opis"
+    android:entryValues="@array/min_log_distance" 
+    android:dialogTitle="Izberi zgornjo mejo" android:defaultValue="10" />
+	</PreferenceCategory>
+</PreferenceScreen>

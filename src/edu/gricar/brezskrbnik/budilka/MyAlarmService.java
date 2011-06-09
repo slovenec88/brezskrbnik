@@ -19,6 +19,7 @@ package edu.gricar.brezskrbnik.budilka;
 // Need the following import to get access to the app resources, since this
 // class is in a sub-package.
 
+import java.io.IOException;
 import java.text.BreakIterator;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -35,8 +36,13 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.os.Vibrator;
 
 import android.util.Log;
 import android.widget.Toast;
@@ -61,7 +67,48 @@ public class MyAlarmService extends Service {
 		mNM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		//Toast.makeText(this, "Start A", Toast.LENGTH_SHORT).show();
 		// show the icon in the status bar
-		showNotification();
+		
+		Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+		// 1. Vibrate for 1000 milliseconds
+		long mili = 3000;
+		v.vibrate(mili);
+		 
+		Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+	     if(alert == null){
+	         alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+	         if(alert == null){  
+	             alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);               
+	         }
+	     }
+
+		
+		  MediaPlayer mp = new MediaPlayer();
+		    try {
+				//mp.setDataSource(this, alert);
+		    	mp.setDataSource("sdcard/media/audio/ringtones/Old_Phone.mp3");
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    try {
+				mp.prepare();
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    mp.start();
+			showNotification();
+
 	}
 
 	@Override
