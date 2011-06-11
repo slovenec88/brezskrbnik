@@ -1,4 +1,8 @@
 package edu.gricar.brezskrbnik.budilka;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,10 +13,12 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -23,6 +29,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import edu.gricar.brezskrbnik.ActivityBrezskrbnik;
 import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
 import edu.gricar.brezskrbnik.KjeSemActivity;
 import edu.gricar.brezskrbnik.R;
@@ -40,9 +47,11 @@ public class AlarmActivity extends Activity implements OnClickListener{
 	private static final String SOAP_ACTION="http://tempuri.org/Floki";
     private static final String METHOD_NAME="Floki";
     private static final String NAMESPACE="http://tempuri.org/";
-    private static final String URL="http://192.168.137.1/Service1.asmx";
+    public static String URL = "";
+    static public String ip;
+    static String casIzspleta = "";
     EditText et;
-    TextView tv;
+    TextView tvIP;
 	TimePicker tp;
 	int ura, minuta;
 	
@@ -55,7 +64,7 @@ public class AlarmActivity extends Activity implements OnClickListener{
 	        
 	        Button button = (Button)findViewById(R.id.btnAlarm);
 	        Button button3 = (Button)findViewById(R.id.btnPovezi);
-	       //tv = (TextView)findViewById(R.id.tvRezultat);
+	       tvIP = (TextView)findViewById(R.id.textViewIP);
 	       //et = (EditText)findViewById(R.id.editTextParam);
 	       
 	        button.setOnClickListener(this);
@@ -66,6 +75,14 @@ public class AlarmActivity extends Activity implements OnClickListener{
 	        tp.setIs24HourView(true);
 	       mAlarmSender = PendingIntent.getService(AlarmActivity.this,
 	                0, new Intent(AlarmActivity.this, MyAlarmService.class), 0);
+	       
+	       
+	      
+	       URL = "http://" + ip + "/service1.asmx";
+	       
+	       tvIP.setText(URL);
+	       //pingIIS();
+
 	    }
 	   
 	   /*private TimePickerDialog.OnTimeSetListener mTimeSetListener =
@@ -171,28 +188,77 @@ public class AlarmActivity extends Activity implements OnClickListener{
 					}
 				
 				if (v.getId() == R.id.btnPovezi) {
-					String casIzspleta = GetData();
+					BackgroundAsyncTask mt = new BackgroundAsyncTask();
+					mt.execute();
 					
-					 Toast.makeText(AlarmActivity.this, casIzspleta,
-			                    Toast.LENGTH_LONG).show();
-				
+					/*
+					casIzspleta = GetData();
+					
+					Toast.makeText(AlarmActivity.this, casIzspleta,
+					          Toast.LENGTH_LONG).show();
+								
+							String[] ura = casIzspleta.split(":");
+								 
+							int iura = Integer.parseInt(ura[0]);
+							int iminuta = Integer.parseInt(ura[1]);
+								 
+							tp.setCurrentHour(iura);
+							tp.setCurrentMinute(iminuta);*/
+					
 					 
-					 String[] ura = casIzspleta.split(":");
-					 
-					 int iura = Integer.parseInt(ura[0]);
-					 int iminuta = Integer.parseInt(ura[1]);
-					 
-					 tp.setCurrentHour(iura);
-					 tp.setCurrentMinute(iminuta);
 				}
 			
 		}
 		
-		
+	    public class BackgroundAsyncTask extends AsyncTask<Void, Integer, String> {
+	    	ProgressDialog dialogWait;
+	    	
+			@Override
+			protected String doInBackground(Void ... params) {
+				dialogWait.setCancelable(true);
+				casIzspleta = GetData();
+				dialogWait.dismiss();			
+				return casIzspleta;
+			}
+			@Override
+			protected void onPreExecute() {
+				dialogWait = ProgressDialog.show(AlarmActivity.this, "Povezujem", "Poèakajte prosim..", true);
+			}
+			
+			protected void onPostExecute(String arg) {
+				
+				try {
+					if (casIzspleta.equalsIgnoreCase("0"))
+						 Toast.makeText(AlarmActivity.this, "Napaka v komunikaciji!",
+				                    Toast.LENGTH_LONG).show();
+					else{
+					casIzspleta = arg;
+					
+					String[] ura = casIzspleta.split(":");
+					 
+					int iura = Integer.parseInt(ura[0]);
+					int iminuta = Integer.parseInt(ura[1]);
+						 
+					tp.setCurrentHour(iura);
+					tp.setCurrentMinute(iminuta);
+					}
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+				
+			
+			}
+
+	  
+
+	 
 		
 		private String GetData(){
 	    	SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
 	    	//Request.addProperty("Celsius", param);
+	    	
 	    	
 	    	SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 	    	soapEnvelope.dotNet = true;
@@ -202,6 +268,11 @@ public class AlarmActivity extends Activity implements OnClickListener{
 	    	try{
 	    		aht.call(SOAP_ACTION, soapEnvelope);
 	    		SoapPrimitive result = (SoapPrimitive)soapEnvelope.getResponse();
+	    		
+	    		
+
+				
+			
 	    		return result.toString();
 	    	}
 	    	catch(Exception e){
@@ -210,8 +281,27 @@ public class AlarmActivity extends Activity implements OnClickListener{
 	    	}
 	    	
 	    	
-	    	return "NAPAKA";
+	    	return "0";
 	    }
+		
 
-	
+		
+		public void pingIIS(){
+			
+			try {
+				InetAddress address = InetAddress.getByName("www.najdi.si");
+				tvIP.setText("Name: " + 
+				address.getHostName()+ " Addr: "+ address.getHostAddress()+ " Reach: " + 
+				address.isReachable(3000)); 
+				}
+		catch (UnknownHostException e) {
+			tvIP.setText("colis"); 
+			
+				}
+		catch (IOException e) { 
+			tvIP.setText("Unable to reach ");
+		}
+		}
+
+	    }
 }

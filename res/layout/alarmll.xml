@@ -14,4 +14,7 @@
         <LinearLayout android:layout_height="match_parent" android:layout_width="wrap_content" android:id="@+id/linearLayout4">
         </LinearLayout>
     </LinearLayout>
+    <LinearLayout android:id="@+id/linearLayout5" android:layout_height="wrap_content" android:layout_width="match_parent" android:gravity="bottom" android:layout_gravity="bottom">
+        <TextView android:text="TextView" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/textViewIP"></TextView>
+    </LinearLayout>
 </LinearLayout>

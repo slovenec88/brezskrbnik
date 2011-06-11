@@ -30,12 +30,16 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+//shared pref - nastavitve za budilko.. ip, dolžina vibriranja, zvok
+//shared pref navigacija, google navigation on off?
 
+//celoten kolendar - prikaz in vnašanje novih koledarjev
 public class ActivityBrezskrbnik extends Activity implements OnClickListener{
 	ApplicationBrezskrbnik app;
 	Menu nMenu;
     private static final int TEST_LIST_ACTIVITY_ID = 0;
     public static final String PREF_NAME="PREF_STEVCI";
+    
 	private static final int EXIT_DIALOG = 0;
 	/** Called when the activity is first created. */
 	
@@ -100,7 +104,18 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
        // buttonStartProgress.setOnClickListener(new Button.OnClickListener(){
     }
     
+    @Override
+    public void onResume(){
+    	super.onResume();
+    	nastaviIPstreznika();
     
+    }
+    
+    public void nastaviIPstreznika(){
+     AlarmActivity.ip = MenuNastavitve.ip;
+    	
+    
+    }
     
     public void onNavigacija(View v) {
     	
@@ -134,8 +149,8 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
     	Toast toast =Toast.makeText(this, "Pomoè", Toast.LENGTH_LONG);
 
 		toast.show();
-		Intent i = new Intent(this.getApplicationContext(), ActivityAsistenca.class);
-    	startActivity(i);
+		//Intent i = new Intent(this.getApplicationContext(), ActivityAsistenca.class);
+    	//startActivity(i);
 	}
     
     public void onOpomniki(View v) {
@@ -267,9 +282,9 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
 			i.setClass(this, MenuNastavitve.class);
 			startActivityForResult(i, R.id.itemSettings);
 			return true;
-		case R.id.itemRezultati:
-			//Intent moj2=new Intent(this,mojListActivity.class); 
-			//this.startActivityForResult(moj2, TEST_LIST_ACTIVITY_ID);	
+		case R.id.itemOprog:
+			Intent moj2=new Intent(this,ActivityO.class); 
+			this.startActivity(moj2);
 			return true;
 
 		default:// Generic catch all for all the other menu resources

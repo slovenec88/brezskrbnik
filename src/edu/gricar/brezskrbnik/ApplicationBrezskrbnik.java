@@ -20,14 +20,9 @@ public class ApplicationBrezskrbnik extends Application {
         super.onCreate(); //ne pozabi
         db = new DBAdapterStevec(this); 
         init();// na zacetku prazen
-        
-        db.open();
-        
-        Toast toast =Toast.makeText(this, "Vda", Toast.LENGTH_LONG);
+        //db.open();
 
-		toast.show();
-        
-        addRezultat();
+        //addRezultat();
 	}
 	
 	
