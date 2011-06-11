@@ -106,9 +106,7 @@ public class AlarmActivity extends Activity implements OnClickListener{
 	public void onClickStart(View v) {
 		
            }
-           
-           
-		
+
 		public void onClickStop(View v){
             AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
             am.cancel(mAlarmSender);
@@ -116,9 +114,7 @@ public class AlarmActivity extends Activity implements OnClickListener{
             // Tell the user about what we did.
             Toast.makeText(AlarmActivity.this, "Stop repeating alarm",
                     Toast.LENGTH_LONG).show();
-			
 
-       
 		}
 
 
@@ -162,21 +158,14 @@ public class AlarmActivity extends Activity implements OnClickListener{
 		            	sek = cajt - preracunan;
 		            
 		            calendar.add(Calendar.SECOND, sek);
-		            
-		            
-		            
-
+	
 					Toast.makeText(AlarmActivity.this, "Budilka èez " + sek + "s.",
 		                   Toast.LENGTH_LONG).show();
 		                   
 		            // Schedule the alarm!
 		            AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
 		            am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), mAlarmSender);
-		            
-		            
-		            
-		           
-		           
+	
 				}
 				if (v.getId() == R.id.btnAlarmStop) {
 		            AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
@@ -190,21 +179,7 @@ public class AlarmActivity extends Activity implements OnClickListener{
 				if (v.getId() == R.id.btnPovezi) {
 					BackgroundAsyncTask mt = new BackgroundAsyncTask();
 					mt.execute();
-					
-					/*
-					casIzspleta = GetData();
-					
-					Toast.makeText(AlarmActivity.this, casIzspleta,
-					          Toast.LENGTH_LONG).show();
-								
-							String[] ura = casIzspleta.split(":");
-								 
-							int iura = Integer.parseInt(ura[0]);
-							int iminuta = Integer.parseInt(ura[1]);
-								 
-							tp.setCurrentHour(iura);
-							tp.setCurrentMinute(iminuta);*/
-					
+							
 					 
 				}
 			

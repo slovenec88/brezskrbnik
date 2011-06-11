@@ -12,10 +12,14 @@ public class MenuNastavitve extends PreferenceActivity {
 	public static final String PREF_SHRANI="SHRANI";
 	public static final String PREF_IP = "IP";
 	public static final String PREF_DEBUG_LOCATION = "PREF_DEBUG_LOCATION";
+	public static final String PREF_DOMACI = "DOMACI";
+	public static final String PREF_TELEFONSKA = "TELEFONSKA";
 	public static boolean shrani=true;
 	public static int frequency=10;
 	public static String debug_location="localhost";
 	public static String ip="192.168.1.65";
+	public static String domaci="dobletinska+ulica+5";
+	public static String telefonska = "040597224";
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,6 +33,8 @@ public class MenuNastavitve extends PreferenceActivity {
 		shrani = settings.getBoolean(PREF_SHRANI, true);
 		debug_location = settings.getString(PREF_DEBUG_LOCATION, "localhost");
 		ip = settings.getString(PREF_IP, "192.168.1.1");
+		domaci = settings.getString(PREF_DOMACI, "dobletinska+ulica+5");
+		telefonska = settings.getString(PREF_TELEFONSKA, "040597224");
 		//app.setSettingsMenu(); //if something has been changed
 	}
 }

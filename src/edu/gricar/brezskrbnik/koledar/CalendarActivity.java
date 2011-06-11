@@ -1,4 +1,4 @@
-package edu.gricar.brezskrbnik;
+package edu.gricar.brezskrbnik.koledar;
 
 /*
 * Copyright (c) 2010, Lauren Darcey and Shane Conder
@@ -51,6 +51,8 @@ package edu.gricar.brezskrbnik;
 
 
 import edu.gricar.brezskrbnik.R;
+import edu.gricar.brezskrbnik.R.id;
+import edu.gricar.brezskrbnik.R.layout;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -64,17 +66,19 @@ public class CalendarActivity extends Activity {
 
    private static final String DEBUG_TAG = "CalendarActivity";
    TextView info;
+   TextView miki;
    @Override
    public void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.opomniki2);
-       ListAllCalendarEntries(2);
+       //ListAllCalendarEntries(2);
        info = (TextView) this.findViewById(R.id.textViewInfo);
+       miki = (TextView) this.findViewById(R.id.tvKoledar);
        try {
            Log.i(DEBUG_TAG, "Starting Calendar Test");
 
-           // ListAllCalendarDetails();
-
+            //ListAllCalendarDetails();
+            ListAllCalendarEntries(5);
            // will return the last found calendar with "Test" in the name
            int iTestCalendarID = ListSelectedCalendars();
 
@@ -98,7 +102,7 @@ public class CalendarActivity extends Activity {
                //DeleteCalendarEntry(eventID);
                
                //ListCalendarEntrySummary(eventID);
-               ListAllCalendarEntries(2);
+               //ListAllCalendarEntries(9);
            } else {
                Log.i(DEBUG_TAG, "No 'Test' calendar found.");
            }
@@ -170,7 +174,7 @@ public class CalendarActivity extends Activity {
    }
 
    private void ListAllCalendarEntries(int calID) {
-
+	   int riki = 0;
        Cursor managedCursor = getCalendarManagedCursor(null, "calendar_id="
                + calID, "events");
 
@@ -185,6 +189,9 @@ public class CalendarActivity extends Activity {
                for (int i = 0; i < managedCursor.getColumnCount(); i++) {
                    Log.i(DEBUG_TAG, managedCursor.getColumnName(i) + "="
                            + managedCursor.getString(i));
+                   if (managedCursor.getColumnName(i).equalsIgnoreCase("title"))
+                	   miki.setText(miki.getText() + "\n" + managedCursor.getString(i));
+                   riki++;
                    
                    
                }
@@ -202,9 +209,9 @@ public class CalendarActivity extends Activity {
        if (managedCursor != null && managedCursor.moveToFirst()) {
 
            Log.i(DEBUG_TAG, "Listing Calendar Event Details");
-
+           int n = 0;
            do {
-
+        	   
                Log.i(DEBUG_TAG, "**START Calendar Event Description**");
 
                for (int i = 0; i < managedCursor.getColumnCount(); i++) {

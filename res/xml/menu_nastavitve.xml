@@ -2,7 +2,9 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 	<!-- Display settings -->
 	<PreferenceCategory android:title="Težavnost">
-			<CheckBoxPreference android:title="Spletni dostop"></CheckBoxPreference>
+			<CheckBoxPreference android:title="Spletni dostop" android:summaryOff="false" android:key="INTERNET" android:summaryOn="true"></CheckBoxPreference>
 			<EditTextPreference android:dialogTitle="Ip:" android:title="Ip" android:summary="Ip IIS strežnika" android:key="IP"></EditTextPreference>
+			<EditTextPreference android:key="DOMACI" android:title="Domači naslov" android:summary="vpiši domači naslov"></EditTextPreference>
+			<EditTextPreference android:key="TELEFONSKA" android:title="SOS številka" android:summary="obvezno vpiši!"></EditTextPreference>
 	</PreferenceCategory>
 </PreferenceScreen>

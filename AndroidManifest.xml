@@ -41,7 +41,7 @@
 
 			</intent-filter>
 		</activity>
-			<activity android:label="@string/app_name" android:name="CalendarActivity">
+			<activity android:label="@string/app_name" android:name=".koledar.CalendarActivity">
 			<intent-filter>
 
 			</intent-filter>
@@ -67,6 +67,11 @@
 		</intent-filter>
 		 </activity>
 		    <activity android:name=".MenuPreferences" android:label="@string/app_name">
+		<intent-filter>
+		 <category android:name="android.intent.category.LAUNCHER" />
+		</intent-filter>
+		 </activity>
+		 	    <activity android:name=".ActivityPomoc" android:label="@string/app_name">
 		<intent-filter>
 		 <category android:name="android.intent.category.LAUNCHER" />
 		</intent-filter>

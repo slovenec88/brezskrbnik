@@ -6,12 +6,14 @@ import com.google.android.maps.Overlay;
 
 import edu.gricar.brezskrbnik.R;
 import edu.gricar.brezskrbnik.budilka.AlarmActivity;
+import edu.gricar.brezskrbnik.koledar.CalendarActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.location.Criteria;
 import android.location.Location;
@@ -21,6 +23,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,9 +44,13 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
     public static final String PREF_NAME="PREF_STEVCI";
     
 	private static final int EXIT_DIALOG = 0;
+	private static final String PREF_SHRANI = null;
+	private static final String PREF_DEBUG_LOCATION = null;
+	private static final String PREF_IP = null;
+	private static final String PREF_DOMACI = null;
 	/** Called when the activity is first created. */
 	
-	String destination = "040597224";
+	static public String destination = "040597224";
 	ProgressBar progressBar;
     Button buttonStartProgress;
     Button button31;
@@ -96,6 +103,8 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         sosko = (Button) findViewById(R.id.button1);
+       
+        
         //sosko.getBackground().setColorFilter(0x42FFFFFF, PorterDuff.Mode.MULTIPLY);
         ///uttonStartProgress = (Button)findViewById(R.id.startprogress);
         //progressBar = (ProgressBar)findViewById(R.id.progressbar_Horizontal);
@@ -107,14 +116,27 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
     @Override
     public void onResume(){
     	super.onResume();
+    	//SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(app); 
+    	//String tmpip = settings.getString(PREF_IP, "192.168.1.1");
+    	//String tmpdomaci = settings.getString(PREF_DOMACI, "dobletinska+ulica+5");
     	nastaviIPstreznika();
+    	nastaviKraj();
+    	nastaviTel();
     
     }
     
     public void nastaviIPstreznika(){
      AlarmActivity.ip = MenuNastavitve.ip;
     	
+    }
     
+    public void nastaviKraj(){
+    	KjeSemActivity.dom = MenuNastavitve.domaci;
+    }
+    
+    public void nastaviTel(){
+    	
+    	destination = MenuNastavitve.telefonska;
     }
     
     public void onNavigacija(View v) {
@@ -149,8 +171,8 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
     	Toast toast =Toast.makeText(this, "Pomoè", Toast.LENGTH_LONG);
 
 		toast.show();
-		//Intent i = new Intent(this.getApplicationContext(), ActivityAsistenca.class);
-    	//startActivity(i);
+		Intent i = new Intent(this.getApplicationContext(), ActivityPomoc.class);
+    	startActivity(i);
 	}
     
     public void onOpomniki(View v) {

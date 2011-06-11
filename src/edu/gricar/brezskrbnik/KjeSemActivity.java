@@ -26,6 +26,7 @@ import android.widget.TextView;
 public class KjeSemActivity extends MapActivity {
 	ApplicationBrezskrbnik app;
 	double lat, lng;
+	static public String dom;
 	@Override
 	protected boolean isRouteDisplayed() {
 		return false;
@@ -37,6 +38,7 @@ public class KjeSemActivity extends MapActivity {
 	MapController mapController;
 	MyPositionOverlay positionOverlay;
 	String latLongString;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -120,7 +122,7 @@ public class KjeSemActivity extends MapActivity {
 		
 			
 			Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
-					Uri.parse("http://maps.google.com/maps?saddr="+lat+","+lng+"&daddr=5+Dobletinska+ulica,"));
+					Uri.parse("http://maps.google.com/maps?saddr="+lat+","+lng+"&daddr=" +dom + ","));
 			startActivity(intent);
 			
 			

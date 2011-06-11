@@ -10,4 +10,5 @@
     android:text="@string/hello"
     />
 <TextView android:layout_width="wrap_content" android:id="@+id/textViewInfo" android:text="TextView" android:layout_height="wrap_content"></TextView>
+<TextView android:textAppearance="?android:attr/textAppearanceSmall" android:text="TextView" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/tvKoledar"></TextView>
 </LinearLayout>
