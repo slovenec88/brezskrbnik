@@ -1,5 +1,8 @@
-package edu.gricar.brezskrbnik;
+package edu.gricar.brezskrbnik.pomoc;
 
+import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
+import edu.gricar.brezskrbnik.R;
+import edu.gricar.brezskrbnik.R.layout;
 import android.app.Activity;
 import android.os.Bundle;
 

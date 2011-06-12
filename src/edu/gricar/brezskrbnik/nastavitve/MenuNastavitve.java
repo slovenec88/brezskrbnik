@@ -1,5 +1,8 @@
-package edu.gricar.brezskrbnik;
+package edu.gricar.brezskrbnik.nastavitve;
 
+import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
+import edu.gricar.brezskrbnik.R;
+import edu.gricar.brezskrbnik.R.xml;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;

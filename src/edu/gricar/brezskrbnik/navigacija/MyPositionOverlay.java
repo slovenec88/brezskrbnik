@@ -1,4 +1,4 @@
-package edu.gricar.brezskrbnik;
+package edu.gricar.brezskrbnik.navigacija;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,8 @@ import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.Projection;
+
+import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
 
 public class MyPositionOverlay extends Overlay {
 	ApplicationBrezskrbnik app;

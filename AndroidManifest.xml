@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
 
 
-    <application android:name="edu.gricar.brezskrbnik.ApplicationBrezskrbnik" android:icon="@drawable/icon" android:label="@string/app_name">
+    <application android:name=".ApplicationBrezskrbnik" android:icon="@drawable/icon" android:label="@string/app_name">
     <uses-library android:name="com.google.android.maps" />
         <activity android:label="@string/app_name" android:name="ActivityBrezskrbnik">
             <intent-filter>
@@ -15,35 +15,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="@string/app_name" android:name="ActivityAsistenca">
-            <intent-filter>
-
-            </intent-filter>
-        </activity>
-        <activity android:name=".ActivitySporociLokacijo"
-                  android:label="@string/app_name">
-            <intent-filter>
-
-            </intent-filter>
-        </activity>
-		<activity android:label="@string/app_name" android:name="KjeSemActivity">
+		<activity android:label="@string/app_name" android:name=".navigacija.KjeSemActivity">
 			<intent-filter>
-
 			</intent-filter>
 		</activity>
-		<activity android:label="@string/app_name" android:name="ActivityBudilka">
+		<activity android:label="@string/app_name" android:name=".koledar.Opomniki">
 			<intent-filter>
-
-			</intent-filter>
-		</activity>
-		<activity android:label="@string/app_name" android:name="Opomniki">
-			<intent-filter>
-
 			</intent-filter>
 		</activity>
 			<activity android:label="@string/app_name" android:name=".koledar.CalendarActivity">
 			<intent-filter>
-
 			</intent-filter>
 		</activity>	
 		<activity android:label="@string/app_name" android:name=".budilka.AlarmActivity">
@@ -56,12 +37,12 @@
 		 <category android:name="android.intent.category.LAUNCHER" />
 		</intent-filter>
 		 </activity>
-		  <activity android:name=".MenuNastavitve" android:label="@string/app_name">
+		  <activity android:name=".nastavitve.MenuNastavitve" android:label="@string/app_name">
 		<intent-filter>
 		 <category android:name="android.intent.category.LAUNCHER" />
 		</intent-filter>
 		 </activity>
-		   <activity android:name=".ActivityO" android:label="@string/app_name">
+		   <activity android:name=".pomoc.ActivityO" android:label="@string/app_name">
 		<intent-filter>
 		 <category android:name="android.intent.category.LAUNCHER" />
 		</intent-filter>
@@ -71,7 +52,7 @@
 		 <category android:name="android.intent.category.LAUNCHER" />
 		</intent-filter>
 		 </activity>
-		 	    <activity android:name=".ActivityPomoc" android:label="@string/app_name">
+		 	    <activity android:name=".pomoc.ActivityPomoc" android:label="@string/app_name">
 		<intent-filter>
 		 <category android:name="android.intent.category.LAUNCHER" />
 		</intent-filter>

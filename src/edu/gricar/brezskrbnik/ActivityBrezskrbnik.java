@@ -7,6 +7,10 @@ import com.google.android.maps.Overlay;
 import edu.gricar.brezskrbnik.R;
 import edu.gricar.brezskrbnik.budilka.AlarmActivity;
 import edu.gricar.brezskrbnik.koledar.CalendarActivity;
+import edu.gricar.brezskrbnik.nastavitve.MenuNastavitve;
+import edu.gricar.brezskrbnik.navigacija.KjeSemActivity;
+import edu.gricar.brezskrbnik.pomoc.ActivityO;
+import edu.gricar.brezskrbnik.pomoc.ActivityPomoc;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -150,40 +154,24 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
 		
 		Intent i = new Intent(this.getApplicationContext(), KjeSemActivity.class);
     	startActivity(i);
-		
-		
-				
-				
-
-				Toast toast =Toast.makeText(this, "narii", Toast.LENGTH_LONG); 
-				toast.show();
-				
-				
 
 	}
     
     
     public void onBudilka(View v) {
-    	Toast toast =Toast.makeText(this, "Budilka", Toast.LENGTH_LONG);
 
-		toast.show();
 		Intent i = new Intent(this.getApplicationContext(), AlarmActivity.class);
     	startActivity(i);
 
 	}
     
     public void onPomoc(View v) {
-    	Toast toast =Toast.makeText(this, "Pomoè", Toast.LENGTH_LONG);
-
-		toast.show();
+ 
 		Intent i = new Intent(this.getApplicationContext(), ActivityPomoc.class);
     	startActivity(i);
 	}
     
     public void onOpomniki(View v) {
-    	Toast toast =Toast.makeText(this, "Opomniki", Toast.LENGTH_LONG);
-
-		toast.show();
 //CalendarActivity
 		Intent i = new Intent(this.getApplicationContext(), CalendarActivity.class);
     	startActivity(i);

@@ -24,6 +24,7 @@ import android.os.SystemClock;
 import android.view.View;
 import android.view.View.OnClickListener;
 import edu.gricar.brezskrbnik.budilka.MyAlarmService;
+import edu.gricar.brezskrbnik.navigacija.KjeSemActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,8 +32,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import edu.gricar.brezskrbnik.ActivityBrezskrbnik;
 import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
-import edu.gricar.brezskrbnik.KjeSemActivity;
 import edu.gricar.brezskrbnik.R;
+
 import org.ksoap2.*;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;

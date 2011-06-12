@@ -2,6 +2,7 @@ package edu.gricar.brezskrbnik;
 
 import java.util.ArrayList;
 import edu.gricar.brezskrbnik.bazaOpomnik.DBAdapterStevec;
+import edu.gricar.brezskrbnik.koledar.Opomniki;
 import android.app.Application;
 import android.widget.Toast;
 

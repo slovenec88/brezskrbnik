@@ -1,6 +1,6 @@
 package edu.gricar.brezskrbnik.bazaOpomnik;
 
-import edu.gricar.brezskrbnik.Opomniki;
+import edu.gricar.brezskrbnik.koledar.Opomniki;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
