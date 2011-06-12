@@ -41,13 +41,15 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
 	ApplicationBrezskrbnik app;
 	Menu nMenu;
     private static final int TEST_LIST_ACTIVITY_ID = 0;
-    public static final String PREF_NAME="PREF_STEVCI";
+    public static final String PREF_NAME="PREF_TELEFONSKA";
     
 	private static final int EXIT_DIALOG = 0;
 	private static final String PREF_SHRANI = null;
 	private static final String PREF_DEBUG_LOCATION = null;
-	private static final String PREF_IP = null;
-	private static final String PREF_DOMACI = null;
+	private static final String PREF_IP = "IP";
+	private static final String PREF_DOMACI = "DOMACI";
+	private static final String PREF_TELEFONSKA = "TELEFONSKA";
+	public static final String PREF_NASTAVITVE = "nastavitve";
 	/** Called when the activity is first created. */
 	
 	static public String destination = "040597224";
@@ -116,9 +118,12 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
     @Override
     public void onResume(){
     	super.onResume();
-    	//SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(app); 
-    	//String tmpip = settings.getString(PREF_IP, "192.168.1.1");
-    	//String tmpdomaci = settings.getString(PREF_DOMACI, "dobletinska+ulica+5");
+    	SharedPreferences settings = getSharedPreferences("brezskrbnik",0);
+    	
+    	MenuNastavitve.ip = settings.getString(PREF_IP, "Ne najdem");
+    	MenuNastavitve.domaci = settings.getString(PREF_DOMACI, "Ne najdem");
+    	MenuNastavitve.telefonska = settings.getString(PREF_TELEFONSKA, "Ne najdem");
+    	
     	nastaviIPstreznika();
     	nastaviKraj();
     	nastaviTel();
