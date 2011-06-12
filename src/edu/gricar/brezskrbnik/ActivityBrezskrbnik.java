@@ -194,33 +194,39 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
     	        case DialogInterface.BUTTON_POSITIVE:
     	        	
     	        	
-    	        	LocationManager locationManager;
-    	    		String context = Context.LOCATION_SERVICE;
-    	    		locationManager = (LocationManager)getSystemService(context);
-    	    		Criteria criteria = new Criteria();
-    	    		criteria.setAccuracy(Criteria.ACCURACY_FINE);
-    	    		criteria.setAltitudeRequired(false);
-    	    		criteria.setBearingRequired(false);
-    	    		criteria.setCostAllowed(true);
-    	    		criteria.setPowerRequirement(Criteria.POWER_LOW);
-    	    		String provider = locationManager.getBestProvider(criteria, true);
+    	        	try {
+						LocationManager locationManager;
+						String context = Context.LOCATION_SERVICE;
+						locationManager = (LocationManager)getSystemService(context);
+						Criteria criteria = new Criteria();
+						criteria.setAccuracy(Criteria.ACCURACY_FINE);
+						criteria.setAltitudeRequired(false);
+						criteria.setBearingRequired(false);
+						criteria.setCostAllowed(true);
+						criteria.setPowerRequirement(Criteria.POWER_LOW);
+						String provider = locationManager.getBestProvider(criteria, true);
 
-    	    		Location location = locationManager.getLastKnownLocation(provider);
-    	    		
-    	
-    	        	SmsManager m = SmsManager.getDefault();
-    	        	/*String text = "(TEST) Prosim za pomoè! Moja lokacija je: " + "Širina: "+ location.getLatitude() 
-    	        		+ " Dolžina:" + location.getLongitude() +
-    	        			" http://maps.google.com/maps?q="+ location.getLatitude() + "," + location.getLongitude() + " [brezskrbnik]";*/
-    	        	
-    	        	String text = "http://maps.google.com/maps?q="+ location.getLatitude() + "," + location.getLongitude();
-    	        	m.sendTextMessage(destination, null, "TEST! Prosim za pomoè na lokaciji: ", null, null);
-    	        	m.sendTextMessage(destination, null, text, null, null);
-    	        	
-    	        	
-    	        	
-    	        	Toast toast = Toast.makeText(ActivityBrezskrbnik.this, "Sporoèilo JE poslano!", Toast.LENGTH_LONG);
-    	    		toast.show();
+						Location location = locationManager.getLastKnownLocation(provider);
+						
+  	
+						SmsManager m = SmsManager.getDefault();
+						/*String text = "(TEST) Prosim za pomoè! Moja lokacija je: " + "Širina: "+ location.getLatitude() 
+							+ " Dolžina:" + location.getLongitude() +
+								" http://maps.google.com/maps?q="+ location.getLatitude() + "," + location.getLongitude() + " [brezskrbnik]";*/
+						
+						String text = "http://maps.google.com/maps?q="+ location.getLatitude() + "," + location.getLongitude();
+						m.sendTextMessage(destination, null, "TEST! Prosim za pomoè na lokaciji: ", null, null);
+						m.sendTextMessage(destination, null, text, null, null);
+						
+						
+						
+						Toast toast = Toast.makeText(ActivityBrezskrbnik.this, "Sporoèilo JE poslano!", Toast.LENGTH_LONG);
+						toast.show();
+					} catch (Exception e) {
+						Toast toast = Toast.makeText(ActivityBrezskrbnik.this, "Napaka v pošiljanju!", Toast.LENGTH_LONG);
+						toast.show();
+						e.printStackTrace();
+					}
     	            break;
 
     	        case DialogInterface.BUTTON_NEGATIVE:
