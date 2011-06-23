@@ -57,6 +57,22 @@
 		 <category android:name="android.intent.category.LAUNCHER" />
 		</intent-filter>
 		 </activity>
+		  <activity android:name=".krizciKrozci.MainActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- This is defined in TicTacToeLib. Right now we need to manually
+             copy it here. Eventually it should get merged automatically. -->
+             <activity android:name=".krizciKrozci.GameActivity"
+                 android:label="@string/app_name">
+           <intent-filter>
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+       </activity>
 		 
 
     </application>

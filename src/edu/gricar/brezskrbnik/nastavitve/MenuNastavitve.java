@@ -17,12 +17,14 @@ public class MenuNastavitve extends PreferenceActivity {
 	public static final String PREF_DOMACI = "DOMACI";
 	public static final String PREF_TELEFONSKA = "TELEFONSKA";
 	public static final String PREF_NASTAVITVE = "brezskrbnik";
+	public static final String PREF_IGRALEC = "IGRALEC";
 	public static boolean shrani=true;
 	public static int frequency=10;
 	public static String debug_location="localhost";
 	public static String ip="192.168.1.65";
 	public static String domaci="dobletinska+ulica+5";
 	public static String telefonska = "040597224";
+	public static boolean igralec = true;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,11 +42,13 @@ public class MenuNastavitve extends PreferenceActivity {
 		ip = settings.getString(PREF_IP, "192.168.1.1");
 		domaci = settings.getString(PREF_DOMACI, "dobletinska+ulica+5");
 		telefonska = settings.getString(PREF_TELEFONSKA, "040597224");
+		igralec = settings.getBoolean(PREF_IGRALEC, true);
 		
 		SharedPreferences.Editor editor = bla.edit();
 		editor.putString(PREF_TELEFONSKA, settings.getString(PREF_TELEFONSKA, "040597224"));
 		editor.putString(PREF_DOMACI, domaci);
 		editor.putString(PREF_IP, ip);
+		editor.putBoolean(PREF_IGRALEC, igralec);
 		editor.commit();
 		
 		//app.setSettingsMenu(); //if something has been changed

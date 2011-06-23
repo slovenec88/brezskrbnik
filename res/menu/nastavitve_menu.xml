@@ -3,6 +3,9 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/dialogTest" android:icon="@android:drawable/ic_lock_power_off" android:title="Izhod"></item>
   <item android:id="@+id/itemSettings" android:title="Nastavitve" android:icon="@android:drawable/ic_menu_preferences"></item>
+  <item android:title="Igra" android:icon="@android:drawable/ic_menu_myplaces" android:id="@+id/itemKrizciKrozci"></item>
   <item android:id="@+id/itemOprog" android:title="O aplikaciji" android:icon="@android:drawable/ic_menu_help"></item>
+
+  
 </menu>
 <!--  @string/labeloUporabiNamestoFixText -->

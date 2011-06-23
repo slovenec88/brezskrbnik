@@ -7,6 +7,7 @@ import com.google.android.maps.Overlay;
 import edu.gricar.brezskrbnik.R;
 import edu.gricar.brezskrbnik.budilka.AlarmActivity;
 import edu.gricar.brezskrbnik.koledar.CalendarActivity;
+import edu.gricar.brezskrbnik.krizciKrozci.MainActivity;
 import edu.gricar.brezskrbnik.nastavitve.MenuNastavitve;
 import edu.gricar.brezskrbnik.navigacija.KjeSemActivity;
 import edu.gricar.brezskrbnik.pomoc.ActivityO;
@@ -54,6 +55,7 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
 	private static final String PREF_DOMACI = "DOMACI";
 	private static final String PREF_TELEFONSKA = "TELEFONSKA";
 	public static final String PREF_NASTAVITVE = "nastavitve";
+	public static final String PREF_IGRALEC = "IGRALEC";
 	/** Called when the activity is first created. */
 	
 	static public String destination = "040597224";
@@ -127,11 +129,18 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
     	MenuNastavitve.ip = settings.getString(PREF_IP, "Ne najdem");
     	MenuNastavitve.domaci = settings.getString(PREF_DOMACI, "Ne najdem");
     	MenuNastavitve.telefonska = settings.getString(PREF_TELEFONSKA, "Ne najdem");
+    	MenuNastavitve.igralec = settings.getBoolean(PREF_IGRALEC, false);
     	
     	nastaviIPstreznika();
     	nastaviKraj();
     	nastaviTel();
+    	nastaviIgralca();
     
+    }
+    
+    public void nastaviIgralca(){
+    	MainActivity.igralec = MenuNastavitve.igralec;
+    	
     }
     
     public void nastaviIPstreznika(){
@@ -306,6 +315,10 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
 		case R.id.itemOprog:
 			Intent moj2=new Intent(this,ActivityO.class); 
 			this.startActivity(moj2);
+			return true;
+		case R.id.itemKrizciKrozci:
+			Intent moj3=new Intent(this,MainActivity.class); 
+			this.startActivity(moj3);
 			return true;
 
 		default:// Generic catch all for all the other menu resources
