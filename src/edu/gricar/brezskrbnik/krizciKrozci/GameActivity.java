@@ -14,7 +14,6 @@ import android.webkit.ConsoleMessage;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 import edu.gricar.brezskrbnik.krizciKrozci.GameView.ICellListener;
 import edu.gricar.brezskrbnik.krizciKrozci.GameView.State;
 
@@ -47,6 +46,228 @@ public class GameActivity extends Activity {
 		mGameView.setCellListener(new MyCellListener());
 
 		mButtonNext.setOnClickListener(new MyButtonListener());
+	}
+	
+	/*
+	 * P - trenutni položaj igralec - igralec na potezi d - preostala globina
+	 * alfa - spodnja meja ocene beta - zgornja meja ocene
+	 */
+	public int minimaks(int P, String igralec, int d, int alfa, int beta) {
+		if (d == 0) {
+			return 9;
+			// preostala globina preiskovanja je 9
+		}
+		if (igralec.equalsIgnoreCase("MAX")) {
+			alfa = -100;
+		} else {
+			beta = 100;
+		}
+		// nastavimo zgornjo oz spodnjo mejo ocene
+
+		State[] data = mGameView.getData();
+		// pogledamo na katerem polju imajo igralci postavljeno
+
+		int ocena = 0;
+		int naPotezi = 0;
+		
+		for (int i = 0; i < P; i++) {
+			if (data[i] == State.EMPTY) {
+
+				if (igralec.equalsIgnoreCase("MIN")) {
+					// èe je igralec MIN
+					ocena = hevristika("MAX", i);
+					// vrnemo oceno hevristike
+					if (ocena > alfa) {
+						// pogledamo èe se splaèa postaviti tja
+						alfa = ocena;
+						naPotezi = i;
+					}
+				} else {
+					ocena = hevristika("MIN", i);
+					if (ocena < beta) {
+						beta = ocena;
+						naPotezi = i;
+					}
+				}
+			}
+			if (alfa >= beta)
+				// režemo vejo v primeru da je alfa veèji od beta, torej se nam
+				// se splaèa gledati naprej
+				return naPotezi;
+		}
+		return naPotezi;
+		/*
+		 * izhod (ocena, poteza) vrednost minimaks drevesa in najboljša
+		 * naslednja poteza
+		 */
+	}
+
+	public int naPotezi() {
+		int naPotezi = 0;
+		String igralec;
+		if (State.PLAYER1 == mGameView.getCurrentPlayer())
+			igralec = "MAX";
+		else
+			igralec = "MIN";
+		naPotezi = minimaks(9, igralec, 9, -100, 100);
+		// vrnemo kam želi postaviti raèunalnik na polje
+		return naPotezi;
+	}
+
+	public int hevristika(String igralec, int ind) {
+		int krizec = 0;
+		int krozec = 0;
+		State[] data = mGameView.getData();
+		if (igralec.equalsIgnoreCase("MAX")) {
+			mGameView.setCell(ind, State.PLAYER1);
+		} else {
+			mGameView.setCell(ind, State.PLAYER2);
+		}
+		/*
+		 * POLJE[0,1,2]
+		 *  	[3,4,5] 
+		 *  	[6,7,8]
+		 */
+
+		
+
+		// diagonala levo proti desni
+		if (data[0] == State.PLAYER1 || data[0] == State.EMPTY) {
+			if ((data[4] == State.PLAYER1 || data[4] == State.EMPTY)) {
+				if ((data[8] == State.PLAYER1 || data[8] == State.EMPTY)) {
+
+					krizec++;
+				}
+			}
+		}
+
+		// diagonala desno proti levi
+		if (data[2] == State.PLAYER1 || data[2] == State.EMPTY) {
+			if (data[4] == State.PLAYER1 || data[4] == State.EMPTY) {
+				if (data[6] == State.PLAYER1 || data[6] == State.EMPTY) {
+
+					krizec++;
+				}
+			}
+		}
+		// prva vrstica
+		if (data[0] == State.PLAYER1 || data[0] == State.EMPTY) {
+			if (data[1] == State.PLAYER1 || data[1] == State.EMPTY) {
+				if (data[2] == State.PLAYER1 || data[2] == State.EMPTY) {
+
+					krizec++;
+				}
+			}
+		}
+		// druga
+		if (data[3] == State.PLAYER1 || data[3] == State.EMPTY) {
+			if (data[4] == State.PLAYER1 || data[4] == State.EMPTY) {
+				if (data[5] == State.PLAYER1 || data[5] == State.EMPTY) {
+					krizec++;
+				}
+			}
+		}
+		// tretja
+		if (data[6] == State.PLAYER1 || data[6] == State.EMPTY) {
+			if (data[7] == State.PLAYER1 || data[7] == State.EMPTY) {
+				if (data[8] == State.PLAYER1 || data[8] == State.EMPTY) {
+					krizec++;
+				}
+			}
+		}
+		// diagonala levo proti desni
+		if (data[0] == State.PLAYER2 || data[0] == State.EMPTY) {
+			if (data[4] == State.PLAYER2 || data[4] == State.EMPTY) {
+				if (data[8] == State.PLAYER2 || data[8] == State.EMPTY) {
+					krozec++;
+				}
+			}
+		}
+		// diagonala desno proti levi
+		if (data[2] == State.PLAYER2 || data[2] == State.EMPTY) {
+			if (data[4] == State.PLAYER2 || data[4] == State.EMPTY) {
+				if (data[6] == State.PLAYER2 || data[6] == State.EMPTY) {
+					krozec++;
+				}
+			}
+		}
+		// prva vrstica
+		if (data[0] == State.PLAYER2 || data[0] == State.EMPTY) {
+			if (data[1] == State.PLAYER2 || data[1] == State.EMPTY) {
+				if (data[2] == State.PLAYER2 || data[2] == State.EMPTY) {
+					krozec++;
+				}
+			}
+		}
+		// druga vrstica
+		if (data[3] == State.PLAYER2 || data[3] == State.EMPTY) {
+			if (data[4] == State.PLAYER2 || data[4] == State.EMPTY) {
+				if (data[5] == State.PLAYER2 || data[5] == State.EMPTY) {
+					krozec++;
+				}
+			}
+		}
+		// tretja vrstica
+		if (data[6] == State.PLAYER2 || data[6] == State.EMPTY) {
+			if (data[7] == State.PLAYER2 || data[7] == State.EMPTY) {
+				if (data[8] == State.PLAYER2 || data[8] == State.EMPTY) {
+					krozec++;
+				}
+			}
+		}
+		
+		// stolpci gledam dol, kateri ima prednost
+		if (data[0] == State.PLAYER1 || data[0] == State.EMPTY) {
+			if (data[3] == State.PLAYER1 || data[3] == State.EMPTY) {
+				if (data[6] == State.PLAYER1 || data[6] == State.EMPTY) {
+					krizec++;
+				}
+			}
+		}
+
+		if (data[1] == State.PLAYER1 || data[1] == State.EMPTY) {
+			if (data[4] == State.PLAYER1 || data[4] == State.EMPTY) {
+				if (data[7] == State.PLAYER1 || data[7] == State.EMPTY) {
+					krizec++;
+				}
+			}
+		}
+
+		if (data[2] == State.PLAYER1 || data[2] == State.EMPTY) {
+			if (data[5] == State.PLAYER1 || data[5] == State.EMPTY) {
+				if (data[8] == State.PLAYER1 || data[8] == State.EMPTY) {
+					krizec++;
+				}
+			}
+		}
+
+		if (data[0] == State.PLAYER2 || data[0] == State.EMPTY) {
+			if (data[3] == State.PLAYER2 || data[3] == State.EMPTY) {
+				if (data[6] == State.PLAYER2 || data[6] == State.EMPTY) {
+					krozec++;
+				}
+			}
+		}
+
+		if (data[1] == State.PLAYER2 || data[1] == State.EMPTY) {
+			if (data[4] == State.PLAYER2 || data[4] == State.EMPTY) {
+				if (data[7] == State.PLAYER2 || data[7] == State.EMPTY) {
+					krozec++;
+				}
+			}
+		}
+
+		if (data[2] == State.PLAYER2 || data[2] == State.EMPTY) {
+			if (data[5] == State.PLAYER2 || data[5] == State.EMPTY) {
+				if (data[8] == State.PLAYER2 || data[8] == State.EMPTY) {
+					krozec++;
+				}
+			}
+		}
+		
+		mGameView.setCell(ind, State.EMPTY);
+		return krizec - krozec;
+
 	}
 
 	@Override
@@ -141,188 +362,7 @@ public class GameActivity extends Activity {
 		}
 	}
 
-	/*
-	 * P - trenutni položaj igralec - igralec na potezi d - preostala globina alfa -
-	 * spodnja meja ocene beta - zgornja meja ocene
-	 */
-	public int minimaks(int P, String igralec, int d, int alfa, int beta) {
-		int ocena = 0;
-		int naPotezi = 0;
-		if (d == 0) {
-			return 9;
-			//preostala globina preiskovanja je 9
-		}
-		if (igralec.equalsIgnoreCase("MAX")) {
-			alfa = -100;
-		} else {
-			beta = 100;
-		}
-		// nastavimo zgornjo oz spodnjo mejo ocene
-
-		State[] data = mGameView.getData();
-		// pogledamo na katerem polju imajo igralci postavljeno
-		
-		for (int i = 0; i < P; i++) {
-			if (data[i] == State.EMPTY) {
-
-				if (igralec.equalsIgnoreCase("MIN")) {
-					// èe je igralec MIN
-					ocena = hevristika("MAX", i);
-					//vrnemo oceno hevristike
-					if (ocena > alfa) {
-						//pogledamo èe se splaèa postaviti tja
-						alfa = ocena;
-						naPotezi = i;
-					}
-				} else {
-					ocena = hevristika("MIN", i);
-					if (ocena < beta) {
-						beta = ocena;
-						naPotezi = i;
-					}
-				}
-			}
-			if (alfa >= beta)
-				//režemo vejo v primeru da je alfa veèji od beta, torej se nam se splaèa gledati naprej
-				return naPotezi;
-		}
-		return naPotezi;
-		/*
-		 * izhod (ocena, poteza)
-		 * vrednost minimaks drevesa in najboljša
-		 * naslednja poteza
-		 * 
-		 */
-	}
-
-	public int naPotezi() {
-		int naPotezi = 0;
-		String igralec;
-		if (State.PLAYER1 == mGameView.getCurrentPlayer())
-			igralec= "MAX";
-		else
-			igralec = "MIN";
-		naPotezi = minimaks(9, igralec, 9, -100, 100);
-		//vrnemo kam želi postaviti raèunalnik na polje
-		return naPotezi;
-	}
-
-	public int hevristika(String igralec, int ind) {
-		int krizec = 0;
-		int krozec = 0;
-		State[] data = mGameView.getData();
-		if (igralec.equalsIgnoreCase("MAX")) {
-			mGameView.setCell(ind, State.PLAYER1);
-		} else {
-			mGameView.setCell(ind, State.PLAYER2);
-		}
-		
-		for (int i = 0; i < 3; i++) {
-			// stolpci gledam dol, kateri ima prednost
-			if (data[i] == State.PLAYER1 || data[i] == State.EMPTY) {
-				if (data[i + 3] == State.PLAYER1 || data[i + 3] == State.EMPTY) {
-					if (data[i + 6] == State.PLAYER1 || data[i + 6] == State.EMPTY) {
-						krizec++;
-					}
-				}
-			}
-			if (data[i] == State.PLAYER2 || data[i] == State.EMPTY) {
-				if (data[i + 3] == State.PLAYER2 || data[i + 3] == State.EMPTY) {
-					if (data[i + 6] == State.PLAYER2 || data[i + 6] == State.EMPTY) {
-						krozec++;
-					}
-				}
-			}
-
-			// diagonala levo proti desni
-			if (data[0] == State.PLAYER1 || data[0] == State.EMPTY) {
-				if ((data[4] == State.PLAYER1 || data[4] == State.EMPTY)) {
-					if ((data[8] == State.PLAYER1 || data[8] == State.EMPTY)) {
-
-						krizec++;
-					}
-				}
-			}
-		}
-
-		// diagonala desno proti levi
-		if (data[2] == State.PLAYER1 || data[2] == State.EMPTY) {
-			if (data[4] == State.PLAYER1 || data[4] == State.EMPTY) {
-				if (data[6] == State.PLAYER1 || data[6] == State.EMPTY) {
-
-					krizec++;
-				}
-			}
-		}
-		// prva vrstica
-		if (data[0] == State.PLAYER1 || data[0] == State.EMPTY) {
-			if (data[1] == State.PLAYER1 || data[1] == State.EMPTY) {
-				if (data[2] == State.PLAYER1 || data[2] == State.EMPTY) {
-
-					krizec++;
-				}
-			}
-		}
-		// druga
-		if (data[3] == State.PLAYER1 || data[3] == State.EMPTY) {
-			if (data[4] == State.PLAYER1 || data[4] == State.EMPTY) {
-				if (data[5] == State.PLAYER1 || data[5] == State.EMPTY) {
-					krizec++;
-				}
-			}
-		}
-		// tretja
-		if (data[6] == State.PLAYER1 || data[6] == State.EMPTY) {
-			if (data[7] == State.PLAYER1 || data[7] == State.EMPTY) {
-				if (data[8] == State.PLAYER1 || data[8] == State.EMPTY) {
-					krizec++;
-				}
-			}
-		}
-		// diagonala levo proti desni
-		if (data[0] == State.PLAYER2 || data[0] == State.EMPTY) {
-			if (data[4] == State.PLAYER2 || data[4] == State.EMPTY) {
-				if (data[8] == State.PLAYER2 || data[8] == State.EMPTY) {
-					krozec++;
-				}
-			}
-		}
-		// diagonala desno proti levi
-		if (data[2] == State.PLAYER2 || data[2] == State.EMPTY) {
-			if (data[4] == State.PLAYER2 || data[4] == State.EMPTY) {
-				if (data[6] == State.PLAYER2 || data[6] == State.EMPTY) {
-					krozec++;
-				}
-			}
-		}
-		// prva vrstica
-		if (data[0] == State.PLAYER2 || data[0] == State.EMPTY) {
-			if (data[1] == State.PLAYER2 || data[1] == State.EMPTY) {
-				if (data[2] == State.PLAYER2 || data[2] == State.EMPTY) {
-					krozec++;
-				}
-			}
-		}
-		// druga vrstica
-		if (data[3] == State.PLAYER2 || data[3] == State.EMPTY) {
-			if (data[4] == State.PLAYER2 || data[4] == State.EMPTY) {
-				if (data[5] == State.PLAYER2 || data[5] == State.EMPTY) {
-					krozec++;
-				}
-			}
-		}
-		// tretja vrstica
-		if (data[6] == State.PLAYER2 || data[6] == State.EMPTY) {
-			if (data[7] == State.PLAYER2 || data[7] == State.EMPTY) {
-				if (data[8] == State.PLAYER2 || data[8] == State.EMPTY) {
-					krozec++;
-				}
-			}
-		}
-		mGameView.setCell(ind, State.EMPTY);
-		return krizec - krozec;
-
-	}
+	
 
 	private State getOtherPlayer(State player) {
 		return player == State.PLAYER1 ? State.PLAYER2 : State.PLAYER1;
