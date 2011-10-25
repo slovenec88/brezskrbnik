@@ -9,10 +9,14 @@
 
     <application android:name=".ApplicationBrezskrbnik" android:icon="@drawable/icon" android:label="@string/app_name">
     <uses-library android:name="com.google.android.maps" />
-        <activity android:label="@string/app_name" android:name="ActivityBrezskrbnik">
+        <activity android:label="@string/app_name" android:name="ActivitySplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/app_name" android:name="ActivityBrezskrbnik">
+            <intent-filter>
             </intent-filter>
         </activity>
 		<activity android:label="@string/app_name" android:name=".navigacija.KjeSemActivity">
