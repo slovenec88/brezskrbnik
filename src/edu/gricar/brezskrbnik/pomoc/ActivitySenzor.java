@@ -27,7 +27,6 @@ public class ActivitySenzor extends GraphicsActivity{
 	public static float cy = 0;
 	public static int levo = 90;
 	public static int gor = 200;
-	public static int zzz = 0;
 	public static Drawable dr;
 
 	@Override
@@ -35,8 +34,6 @@ public class ActivitySenzor extends GraphicsActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(new SampleView(this));
 		sSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
-
 	}
 
 	@Override
@@ -55,29 +52,26 @@ public class ActivitySenzor extends GraphicsActivity{
 
 
 		public void onSensorChanged(SensorEvent event) {
-			cz = event.values[0];
+			
 			cx = event.values[1];
 			cy = event.values[2];
 
-			if (cy > 10){
+			if (cy > 5 && an.hasEnded() == true){
 				levo = 0;
 				startActivity(getIntent()); finish();
-
 			}
 
-
-			if (cy < - 10){
+			if (cy < -5 && an.hasEnded() == true){
 				levo = 200;
 				startActivity(getIntent()); finish();
-
 			}
 
-			if (cx > 10){
+			if (cx > 5 && an.hasEnded() == true){
 				gor = 0;
 				startActivity(getIntent()); finish();
 			}
 
-			if (cx < - 10){
+			if (cx < -5 && an.hasEnded() == true){
 				gor = 300;
 				startActivity(getIntent()); finish();			
 			}
@@ -97,13 +91,13 @@ public class ActivitySenzor extends GraphicsActivity{
 			dr.setBounds(0, 0, dr.getIntrinsicWidth(), dr.getIntrinsicHeight());
 			an = new TranslateAnimation(90, levo, 200, gor);
 			an.setDuration(2000);
-			an.setRepeatCount(1);
-			an.initialize(90, 90, 200, 200);
-
+			an.setRepeatCount(0);
+			an.initialize(0, 90, 200, 200);
+			
 			mDrawable = new AnimateDrawable(dr, an);
 			an.startNow();
 			levo = 90;
-			gor = 200;            
+			gor = 200;
 		}
 
 
