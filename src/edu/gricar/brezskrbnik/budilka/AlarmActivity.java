@@ -34,11 +34,20 @@ import edu.gricar.brezskrbnik.ActivityBrezskrbnik;
 import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
 import edu.gricar.brezskrbnik.R;
 
+import org.htmlcleaner.CleanerProperties;
+import org.htmlcleaner.HtmlCleaner;
+import org.htmlcleaner.TagNode;
+import org.htmlcleaner.XPatherException;
 import org.ksoap2.*;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 
@@ -62,7 +71,7 @@ public class AlarmActivity extends Activity implements OnClickListener{
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.alarmll);
 	        showDialog(TIME_DIALOG_ID);
-	        
+	        app = (ApplicationBrezskrbnik) getApplication();
 	        Button button = (Button)findViewById(R.id.btnAlarm);
 	        Button button3 = (Button)findViewById(R.id.btnPovezi);
 	       tvIP = (TextView)findViewById(R.id.textViewIP);
@@ -83,6 +92,7 @@ public class AlarmActivity extends Activity implements OnClickListener{
 	       
 	       tvIP.setText(URL);
 	       //pingIIS();
+	      
 
 	    }
 	   
@@ -103,6 +113,17 @@ public class AlarmActivity extends Activity implements OnClickListener{
 		   return null;
 		   }*/
 
+	public void onAccu(View v){
+	    
+	    try {
+            new AccuParser(app);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+	    
+	    
+	}
 	
 	public void onClickStart(View v) {
 		
@@ -223,14 +244,8 @@ public class AlarmActivity extends Activity implements OnClickListener{
 					e.printStackTrace();
 				}
 			
-				
-			
 			}
-
-	  
-
-	 
-		
+	
 		private String GetData(){
 	    	SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
 	    	//Request.addProperty("Celsius", param);
@@ -244,11 +259,7 @@ public class AlarmActivity extends Activity implements OnClickListener{
 	    	try{
 	    		aht.call(SOAP_ACTION, soapEnvelope);
 	    		SoapPrimitive result = (SoapPrimitive)soapEnvelope.getResponse();
-	    		
-	    		
 
-				
-			
 	    		return result.toString();
 	    	}
 	    	catch(Exception e){
@@ -280,4 +291,6 @@ public class AlarmActivity extends Activity implements OnClickListener{
 		}
 
 	    }
+
+	    
 }

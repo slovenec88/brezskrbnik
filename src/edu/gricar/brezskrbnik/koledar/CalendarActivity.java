@@ -59,6 +59,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -74,6 +75,7 @@ public class CalendarActivity extends Activity {
        //ListAllCalendarEntries(2);
        info = (TextView) this.findViewById(R.id.textViewInfo);
        miki = (TextView) this.findViewById(R.id.tvKoledar);
+       miki.setMovementMethod(new ScrollingMovementMethod());
        try {
            Log.i(DEBUG_TAG, "Starting Calendar Test");
 

@@ -2,7 +2,9 @@ package edu.gricar.brezskrbnik;
 
 import java.util.ArrayList;
 import edu.gricar.brezskrbnik.bazaOpomnik.DBAdapterStevec;
+import edu.gricar.brezskrbnik.budilka.Vreme;
 import edu.gricar.brezskrbnik.koledar.Opomniki;
+import edu.gricar.brezskrbnik.budilka.AccuParser;
 import android.app.Application;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ public class ApplicationBrezskrbnik extends Application {
 	public ArrayList<Opomniki> lista;
 	DBAdapterStevec db;
 	public String imeUporabnika;
+	public Vreme[] vreme;
 	
 	
 	public void onCreate() {
@@ -50,6 +53,12 @@ public class ApplicationBrezskrbnik extends Application {
 		db.open();
 		r.setDbID(db.insertRezultat(r));
 		db.close();	
+	}
+	
+	
+	
+	public void setVreme(Vreme[] vreme){
+	    this.vreme = vreme.clone();
 	}
 	
 	}

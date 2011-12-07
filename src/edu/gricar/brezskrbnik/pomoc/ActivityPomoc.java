@@ -3,6 +3,7 @@ package edu.gricar.brezskrbnik.pomoc;
 import edu.gricar.brezskrbnik.R;
 import edu.gricar.brezskrbnik.R.layout;
 import edu.gricar.brezskrbnik.budilka.AlarmActivity;
+import edu.gricar.brezskrbnik.vreme.ActivityVreme;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,8 +30,13 @@ public class ActivityPomoc extends Activity{
 
 			Intent i = new Intent(this.getApplicationContext(), List11.class);
 	    	startActivity(i);
-
 		}
+	   
+       public void onVreme(View v) {
+
+           Intent i = new Intent(this.getApplicationContext(), ActivityVreme.class);
+           startActivity(i);
+       }
 	   
 	   
 }

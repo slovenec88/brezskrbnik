@@ -56,22 +56,22 @@ public class ActivitySenzor extends GraphicsActivity{
 			cx = event.values[1];
 			cy = event.values[2];
 
-			if (cy > 5 && an.hasEnded() == true){
+			if (cy > 10 && an.hasEnded() == true){
 				levo = 0;
 				startActivity(getIntent()); finish();
 			}
 
-			if (cy < -5 && an.hasEnded() == true){
+			if (cy < -10 && an.hasEnded() == true){
 				levo = 200;
 				startActivity(getIntent()); finish();
 			}
 
-			if (cx > 5 && an.hasEnded() == true){
+			if (cx > 10 && an.hasEnded() == true){
 				gor = 0;
 				startActivity(getIntent()); finish();
 			}
 
-			if (cx < -5 && an.hasEnded() == true){
+			if (cx < -10 && an.hasEnded() == true){
 				gor = 300;
 				startActivity(getIntent()); finish();			
 			}
@@ -92,8 +92,7 @@ public class ActivitySenzor extends GraphicsActivity{
 			an = new TranslateAnimation(90, levo, 200, gor);
 			an.setDuration(2000);
 			an.setRepeatCount(0);
-			an.initialize(0, 90, 200, 200);
-			
+			an.initialize(90, 90, 200, 200);
 			mDrawable = new AnimateDrawable(dr, an);
 			an.startNow();
 			levo = 90;
