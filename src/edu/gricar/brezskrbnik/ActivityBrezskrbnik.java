@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.google.android.maps.Overlay;
 
-import edu.gricar.brezskrbnik.R;
 import edu.gricar.brezskrbnik.budilka.AlarmActivity;
 import edu.gricar.brezskrbnik.koledar.CalendarActivity;
 import edu.gricar.brezskrbnik.krizciKrozci.MainActivity;

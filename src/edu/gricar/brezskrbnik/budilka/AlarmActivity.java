@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import edu.gricar.brezskrbnik.budilka.MyAlarmService;
 import edu.gricar.brezskrbnik.navigacija.KjeSemActivity;
+import edu.gricar.brezskrbnik.vreme.AccuParser;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;

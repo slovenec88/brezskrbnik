@@ -24,8 +24,10 @@
             </intent-filter>
         </activity>
          <activity android:label="@string/app_name" android:name=".vreme.ActivityVreme">
-            <intent-filter>
-            </intent-filter>
+           <intent-filter>
+			    <action android:name="android.intent.action.MAIN" />
+		    <category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
         </activity>
 		<activity android:label="@string/app_name" android:name=".navigacija.KjeSemActivity">
 			<intent-filter>
@@ -40,16 +42,9 @@
 			</intent-filter>
 		</activity>	
 		<activity android:label="@string/app_name" android:name=".budilka.AlarmActivity">
-			<intent-filter>
-			    <action android:name="android.intent.action.MAIN" />
-		    <category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
+			
 		</activity>	
 		<activity android:label="@string/app_name" android:name=".pomoc.ActivitySenzor">
-			<intent-filter>
-			    <action android:name="android.intent.action.MAIN" />
-		    <category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
 		</activity>	
 		 <service android:name=".budilka.MyAlarmService" android:process=":remote" />
 			 <activity android:name=".MenuPreferences" android:label="@string/app_name">
