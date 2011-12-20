@@ -26,6 +26,7 @@ import edu.gricar.brezskrbnik.pomoc.ActivityO;
 
 public class ActivityVreme extends Activity{
     ApplicationBrezskrbnik app;
+    public static String kraj;
     Menu nMenu;
     ImageView ivslika1, ivslika2, ivslika3, ivslika4;
     ImageView[] slikar;
@@ -34,12 +35,16 @@ public class ActivityVreme extends Activity{
     TextView tvDanDanesPlus1, tvTempDanesPlus1;
     TextView tvDanDanesPlus2, tvTempDanesPlus2;
     TextView tvDanDanesPlus3, tvTempDanesPlus3;
+    TextView tvVremeKraj;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vreme);
         app = (ApplicationBrezskrbnik) getApplication();
+        
+        tvVremeKraj = (TextView) findViewById(R.id.tv_kraj);
+        tvVremeKraj.setText("Kraj: " + kraj);
         ivslika1 = (ImageView) findViewById(R.id.vreme_slika_danes);
         ivslika2 = (ImageView) findViewById(R.id.vreme_slika_danesPlus1);
         ivslika3 = (ImageView) findViewById(R.id.vreme_slika_danesPlus2);
@@ -272,6 +277,8 @@ public class ActivityVreme extends Activity{
                 nafilajPodatke();
             } catch (Exception e) {
                 // TODO Auto-generated catch block
+                Toast.makeText(ActivityVreme.this, "Napaka v komunikaciji ali neobstojeè kraj!",
+                        Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
         }

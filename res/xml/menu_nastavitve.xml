@@ -1,15 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<!-- Display settings -->
-	<PreferenceCategory android:title="SOS"><EditTextPreference android:key="TELEFONSKA" android:title="SOS številka" android:summary="obvezno vpiši!"></EditTextPreference></PreferenceCategory><PreferenceCategory android:title="Navigacija"><EditTextPreference android:key="DOMACI" android:title="Domači naslov" android:summary="vpiši domači naslov"></EditTextPreference></PreferenceCategory><PreferenceCategory android:title="Internet">
-			<CheckBoxPreference android:title="Spletni dostop" android:key="INTERNET" android:summary="omogočim dostop do interneta?"></CheckBoxPreference>
-			
-			
-			
-			
-			
-			<CheckBoxPreference android:summary="omogočim dostop do budilke?" android:enabled="true" android:title="Spletna budilka" android:key="DOSTOP_BUDILKA"></CheckBoxPreference><EditTextPreference android:dialogTitle="Ip:" android:title="Ip" android:summary="Ip IIS strežnika" android:key="IP"></EditTextPreference>
-	</PreferenceCategory>
-	
-	<PreferenceCategory android:title="Igra križci krožci"><CheckBoxPreference android:key="IGRALEC" android:title="Začne računalnik" android:summary="ali želite da začne računalnik?" android:enabled="true"></CheckBoxPreference></PreferenceCategory>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- Display settings -->
+
+    <PreferenceCategory android:title="Vreme" >
+
+        <EditTextPreference
+            android:key="KRAJ"
+            android:summary="Vpiši domači kraj"
+            android:title="Domači kraj" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="SOS" >
+
+        <EditTextPreference
+            android:key="TELEFONSKA"
+            android:summary="obvezno vpiši!"
+            android:title="SOS številka" >
+        </EditTextPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Navigacija" >
+
+        <EditTextPreference
+            android:key="DOMACI"
+            android:summary="vpiši domači naslov"
+            android:title="Domači naslov" >
+        </EditTextPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Internet" >
+
+        <CheckBoxPreference
+            android:key="INTERNET"
+            android:summary="omogočim dostop do interneta?"
+            android:title="Spletni dostop" >
+        </CheckBoxPreference>
+
+        <CheckBoxPreference
+            android:enabled="true"
+            android:key="DOSTOP_BUDILKA"
+            android:summary="omogočim dostop do budilke?"
+            android:title="Spletna budilka" >
+        </CheckBoxPreference>
+
+        <EditTextPreference
+            android:dialogTitle="Ip:"
+            android:key="IP"
+            android:summary="Ip IIS strežnika"
+            android:title="Ip" >
+        </EditTextPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Igra križci krožci" >
+
+        <CheckBoxPreference
+            android:enabled="true"
+            android:key="IGRALEC"
+            android:summary="ali želite da začne računalnik?"
+            android:title="Začne računalnik" >
+        </CheckBoxPreference>
+    </PreferenceCategory>
+
 </PreferenceScreen>

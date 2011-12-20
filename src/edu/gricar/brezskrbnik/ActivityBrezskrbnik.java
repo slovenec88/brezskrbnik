@@ -11,6 +11,8 @@ import edu.gricar.brezskrbnik.nastavitve.MenuNastavitve;
 import edu.gricar.brezskrbnik.navigacija.KjeSemActivity;
 import edu.gricar.brezskrbnik.pomoc.ActivityO;
 import edu.gricar.brezskrbnik.pomoc.ActivityPomoc;
+import edu.gricar.brezskrbnik.vreme.AccuParser;
+import edu.gricar.brezskrbnik.vreme.ActivityVreme;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -46,7 +48,6 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
 	Menu nMenu;
     private static final int TEST_LIST_ACTIVITY_ID = 0;
     public static final String PREF_NAME="PREF_TELEFONSKA";
-    
 	private static final int EXIT_DIALOG = 0;
 	private static final String PREF_SHRANI = null;
 	private static final String PREF_DEBUG_LOCATION = null;
@@ -55,6 +56,7 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
 	private static final String PREF_TELEFONSKA = "TELEFONSKA";
 	public static final String PREF_NASTAVITVE = "nastavitve";
 	public static final String PREF_IGRALEC = "IGRALEC";
+	public static final String PREF_VREME_KRAJ = "KRAJ";
 	/** Called when the activity is first created. */
 	
 	static public String destination = "040597224";
@@ -129,12 +131,19 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
     	MenuNastavitve.domaci = settings.getString(PREF_DOMACI, "Ne najdem");
     	MenuNastavitve.telefonska = settings.getString(PREF_TELEFONSKA, "Ne najdem");
     	MenuNastavitve.igralec = settings.getBoolean(PREF_IGRALEC, false);
+    	MenuNastavitve.kraj = settings.getString(PREF_VREME_KRAJ, "Ne najdem");
     	
     	nastaviIPstreznika();
     	nastaviKraj();
     	nastaviTel();
     	nastaviIgralca();
+    	nastaviVremeKraj();
     
+    }
+    
+    public void nastaviVremeKraj(){
+        ActivityVreme.kraj = MenuNastavitve.kraj;
+       // ActivityVreme.kraj = MenuNastavitve.domaci;
     }
     
     public void nastaviIgralca(){

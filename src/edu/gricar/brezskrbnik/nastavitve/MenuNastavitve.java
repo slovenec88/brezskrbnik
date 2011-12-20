@@ -18,6 +18,7 @@ public class MenuNastavitve extends PreferenceActivity {
 	public static final String PREF_TELEFONSKA = "TELEFONSKA";
 	public static final String PREF_NASTAVITVE = "brezskrbnik";
 	public static final String PREF_IGRALEC = "IGRALEC";
+	public static final String PREF_VREME_KRAJ = "KRAJ";
 	public static boolean shrani=true;
 	public static int frequency=10;
 	public static String debug_location="localhost";
@@ -25,6 +26,7 @@ public class MenuNastavitve extends PreferenceActivity {
 	public static String domaci="dobletinska+ulica+5";
 	public static String telefonska = "040597224";
 	public static boolean igralec = true;
+	public static String kraj = "mozirje";
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public class MenuNastavitve extends PreferenceActivity {
 	public void onPause() {
 		super.onPause();
 		SharedPreferences settings =  PreferenceManager.getDefaultSharedPreferences(app); 
-		SharedPreferences bla = getSharedPreferences("brezskrbnik", 0);
+		SharedPreferences neki = getSharedPreferences("brezskrbnik", 0);
 		
 		shrani = settings.getBoolean(PREF_SHRANI, true);
 		debug_location = settings.getString(PREF_DEBUG_LOCATION, "localhost");
@@ -43,12 +45,14 @@ public class MenuNastavitve extends PreferenceActivity {
 		domaci = settings.getString(PREF_DOMACI, "dobletinska+ulica+5");
 		telefonska = settings.getString(PREF_TELEFONSKA, "040597224");
 		igralec = settings.getBoolean(PREF_IGRALEC, true);
+		kraj = settings.getString(PREF_VREME_KRAJ, "mozirje");
 		
-		SharedPreferences.Editor editor = bla.edit();
+		SharedPreferences.Editor editor = neki.edit();
 		editor.putString(PREF_TELEFONSKA, settings.getString(PREF_TELEFONSKA, "040597224"));
 		editor.putString(PREF_DOMACI, domaci);
 		editor.putString(PREF_IP, ip);
 		editor.putBoolean(PREF_IGRALEC, igralec);
+		editor.putString(PREF_VREME_KRAJ, kraj);
 		editor.commit();
 		
 		//app.setSettingsMenu(); //if something has been changed

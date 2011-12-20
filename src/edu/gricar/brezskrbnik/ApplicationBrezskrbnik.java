@@ -8,9 +8,6 @@ import edu.gricar.brezskrbnik.vreme.Vreme;
 import android.app.Application;
 import android.widget.Toast;
 
-
-
-
 public class ApplicationBrezskrbnik extends Application {
 	ApplicationBrezskrbnik app;
 	Opomniki mojTrenutniRezultat; //preimenoval
@@ -18,8 +15,7 @@ public class ApplicationBrezskrbnik extends Application {
 	DBAdapterStevec db;
 	public String imeUporabnika;
 	public Vreme[] vreme;
-	
-	
+		
 	public void onCreate() {
         super.onCreate(); //ne pozabi
         db = new DBAdapterStevec(this); 
@@ -28,7 +24,6 @@ public class ApplicationBrezskrbnik extends Application {
 
         //addRezultat();
 	}
-	
 	
 	public void init() {
 		mojTrenutniRezultat = new Opomniki();
@@ -55,10 +50,7 @@ public class ApplicationBrezskrbnik extends Application {
 		db.close();	
 	}
 	
-	
-	
 	public void setVreme(Vreme[] vreme){
 	    this.vreme = vreme.clone();
-	}
-	
+	}	
 	}
