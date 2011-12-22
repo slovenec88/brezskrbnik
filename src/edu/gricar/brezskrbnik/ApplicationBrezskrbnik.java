@@ -1,6 +1,8 @@
 package edu.gricar.brezskrbnik;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import edu.gricar.brezskrbnik.bazaOpomnik.DBAdapterStevec;
 import edu.gricar.brezskrbnik.koledar.Opomniki;
 import edu.gricar.brezskrbnik.vreme.AccuParser;
@@ -49,8 +51,27 @@ public class ApplicationBrezskrbnik extends Application {
 		r.setDbID(db.insertRezultat(r));
 		db.close();	
 	}
-	
+	// vreme
 	public void setVreme(Vreme[] vreme){
 	    this.vreme = vreme.clone();
 	}	
+	
+	//widget
+	private List<String> news;
+    private int stevec;
+    public List<String> getNews() {
+        return news;
+    }
+    public void setNews(List<String> news) {
+        this.news = news;
+    }
+    public int getStevec() {
+        return stevec;
+    }
+    public void setStevec(int stevec) {
+        this.stevec = stevec;
+    }
+    
+    
+	
 	}

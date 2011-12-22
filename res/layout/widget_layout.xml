@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dip"
+    android:background="@drawable/myshape"
+    android:orientation="vertical" >
+
+	<TextView android:layout_margin="4dip" android:text="Static Text"
+		android:id="@+id/TextViewNews" android:layout_width="match_parent"
+		android:layout_height="wrap_content" style="@android:style/TextAppearance.Medium"
+		android:layout_gravity="center"></TextView>
+
+	<Button
+	    android:id="@+id/buttonNext"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Next" />
+
+	<LinearLayout
+	    android:id="@+id/linearLayout1"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+
+		<ImageView
+		    android:id="@+id/imageWidgetVreme"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:src="@drawable/lib_cross" />
+
+		<LinearLayout
+		    android:id="@+id/linearLayout2"
+		    android:layout_width="wrap_content"
+		    android:layout_height="match_parent"
+		    android:orientation="vertical" >
+
+			<TextView
+			    android:id="@+id/tvWidgetVremeOpis"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="TextView" />
+
+			<TextView
+			    android:id="@+id/tvWidgetVremeTemp"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="TextView" />
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</LinearLayout>

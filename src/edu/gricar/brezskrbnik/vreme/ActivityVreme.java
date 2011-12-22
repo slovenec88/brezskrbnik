@@ -282,8 +282,5 @@ public class ActivityVreme extends Activity{
                 e.printStackTrace();
             }
         }
-        
-
-    
     }
 }

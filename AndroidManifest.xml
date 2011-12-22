@@ -1,98 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="edu.gricar.brezskrbnik"
-      android:versionCode="1"
-      android:versionName="1.0">
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
-    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+    package="edu.gricar.brezskrbnik"
+    android:versionCode="1"
+    android:versionName="1.0" >
 
+    <uses-permission android:name="android.permission.VIBRATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.SEND_SMS" >
+    </uses-permission>
 
-    <application android:name=".ApplicationBrezskrbnik" android:icon="@drawable/icon" android:label="@string/app_name">
-    <uses-library android:name="com.google.android.maps" />
-        <activity android:label="@string/app_name" android:name="ActivitySplashScreen">
-            <intent-filter>
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:name=".ApplicationBrezskrbnik" >
+        <uses-library android:name="com.google.android.maps" />
+
+        <activity
+            android:label="@string/app_name"
+            android:name="ActivitySplashScreen" >
+            <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="@string/app_name" android:name="ActivityBrezskrbnik">
-            <intent-filter>
+        <activity
+            android:label="@string/app_name"
+            android:name="ActivityBrezskrbnik" >
+            <intent-filter >
             </intent-filter>
         </activity>
-         <activity android:label="@string/app_name" android:name=".pomoc.List11">
-            <intent-filter>
+        <activity
+            android:label="@string/app_name"
+            android:name=".pomoc.List11" >
+            <intent-filter >
             </intent-filter>
         </activity>
-         <activity android:label="@string/app_name" android:name=".vreme.ActivityVreme">
-           <intent-filter>
-			    <action android:name="android.intent.action.MAIN" />
-		    <category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
+        <activity
+            android:label="@string/app_name"
+            android:name=".vreme.ActivityVreme" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-		<activity android:label="@string/app_name" android:name=".navigacija.KjeSemActivity">
-			<intent-filter>
-			</intent-filter>
-		</activity>
-		<activity android:label="@string/app_name" android:name=".koledar.Opomniki">
-			<intent-filter>
-			</intent-filter>
-		</activity>
-			<activity android:label="@string/app_name" android:name=".koledar.CalendarActivity">
-			<intent-filter>
-			</intent-filter>
-		</activity>	
-		<activity android:label="@string/app_name" android:name=".budilka.AlarmActivity">
-			
-		</activity>	
-		<activity android:label="@string/app_name" android:name=".pomoc.ActivitySenzor">
-		</activity>	
-		 <service android:name=".budilka.MyAlarmService" android:process=":remote" />
-			 <activity android:name=".MenuPreferences" android:label="@string/app_name">
-		<intent-filter>
-		 <category android:name="android.intent.category.LAUNCHER" />
-		</intent-filter>
-		 </activity>
-		  <activity android:name=".nastavitve.MenuNastavitve" android:label="@string/app_name">
-		<intent-filter>
-		 <category android:name="android.intent.category.LAUNCHER" />
-		</intent-filter>
-		 </activity>
-		   <activity android:name=".pomoc.ActivityO" android:label="@string/app_name">
-		<intent-filter>
-		 <category android:name="android.intent.category.LAUNCHER" />
-		</intent-filter>
-		 </activity>
-		    <activity android:name=".MenuPreferences" android:label="@string/app_name">
-		<intent-filter>
-		 <category android:name="android.intent.category.LAUNCHER" />
-		</intent-filter>
-		 </activity>
-		 	    <activity android:name=".pomoc.ActivityPomoc" android:label="@string/app_name">
-		<intent-filter>
-		 <category android:name="android.intent.category.LAUNCHER" />
-		</intent-filter>
-		 </activity>
-		  <activity android:name=".krizciKrozci.MainActivity"
-                  android:label="@string/app_name">
-            <intent-filter>
+        <activity
+            android:label="@string/app_name"
+            android:name=".navigacija.KjeSemActivity" >
+            <intent-filter >
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".koledar.Opomniki" >
+            <intent-filter >
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".koledar.CalendarActivity" >
+            <intent-filter >
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".budilka.AlarmActivity" >
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".pomoc.ActivitySenzor" >
+        </activity>
+
+        <service
+            android:name=".budilka.MyAlarmService"
+            android:process=":remote" />
+
+        <activity
+            android:label="@string/app_name"
+            android:name=".MenuPreferences" >
+            <intent-filter >
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".nastavitve.MenuNastavitve" >
+            <intent-filter >
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".pomoc.ActivityO" >
+            <intent-filter >
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".MenuPreferences" >
+            <intent-filter >
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".pomoc.ActivityPomoc" >
+            <intent-filter >
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".krizciKrozci.MainActivity" >
+            <intent-filter >
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- This is defined in TicTacToeLib. Right now we need to manually
-             copy it here. Eventually it should get merged automatically. -->
-             <activity android:name=".krizciKrozci.GameActivity"
-                 android:label="@string/app_name">
-           <intent-filter>
-               <category android:name="android.intent.category.LAUNCHER" />
-           </intent-filter>
-       </activity>
-		 
+        <!--
+             This is defined in TicTacToeLib. Right now we need to manually
+             copy it here. Eventually it should get merged automatically.
+        -->
+        <activity
+            android:label="@string/app_name"
+            android:name=".krizciKrozci.GameActivity" >
+            <intent-filter >
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
+        <receiver android:name=".widget.MyWidgetProvider" >
+            <intent-filter >
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+
+        <service android:name=".widget.UpdateWidgetService" />
     </application>
+
     <uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.READ_CALENDAR" />
-	<uses-permission android:name="android.permission.WRITE_CALENDAR" />
-	<uses-sdk android:minSdkVersion="8" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
+    <uses-sdk android:minSdkVersion="8" />
+
 </manifest>
