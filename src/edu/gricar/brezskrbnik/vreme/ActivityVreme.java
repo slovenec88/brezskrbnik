@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class ActivityVreme extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.vreme);
         app = (ApplicationBrezskrbnik) getApplication();
         
@@ -85,9 +87,7 @@ public class ActivityVreme extends Activity{
         
         tvDanDanesPlus1.setText(app.vreme[1].getDatum());
         tvTempDanesPlus1.setText(app.vreme[1].getRealfeel());
-        
-       
-        
+
         for (int i = 0; i < 4; i++){
             String slika = app.vreme[i].getSlika();
 
@@ -211,9 +211,7 @@ public class ActivityVreme extends Activity{
             if (slika.equalsIgnoreCase("40_int.jpg")){
                 slikar[i].setImageDrawable(getResources().getDrawable(R.drawable.weather_44));
             }       
-       
         }
-
     }
 
      
@@ -260,20 +258,26 @@ public class ActivityVreme extends Activity{
         protected String doInBackground(ApplicationBrezskrbnik ... params) {
             
             
-            dialogWait.setCancelable(true);
+            
+            //dialogWait.setCancelable(true);
             new AccuParser(params[0]);
             
-            dialogWait.dismiss();
+            //dialogWait.dismiss();
             
             return "";
         }
         @Override
         protected void onPreExecute() {
-            dialogWait = ProgressDialog.show(ActivityVreme.this, "Osvežujem", "Poèakajte prosim..", true);
+            //dialogWait = ProgressDialog.show(ActivityVreme.this, "Osvežujem", "Poèakajte prosim..", true);
+            
+
+            setProgressBarIndeterminateVisibility(true);
+            
         }
         
         protected void onPostExecute(String arg) {
             try {
+                setProgressBarIndeterminateVisibility(false);
                 nafilajPodatke();
             } catch (Exception e) {
                 // TODO Auto-generated catch block

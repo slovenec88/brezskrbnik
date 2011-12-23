@@ -52,6 +52,7 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
 	private static final String PREF_SHRANI = null;
 	private static final String PREF_DEBUG_LOCATION = null;
 	private static final String PREF_IP = "IP";
+	private static final String PREF_IP_TOMCAT = "IPTOMCAT";
 	private static final String PREF_DOMACI = "DOMACI";
 	private static final String PREF_TELEFONSKA = "TELEFONSKA";
 	public static final String PREF_NASTAVITVE = "nastavitve";
@@ -128,21 +129,29 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
     	SharedPreferences settings = getSharedPreferences("brezskrbnik",0);
     	
     	MenuNastavitve.ip = settings.getString(PREF_IP, "Ne najdem");
+    	MenuNastavitve.iptomcat = settings.getString(PREF_IP_TOMCAT, "Ne najdem");
     	MenuNastavitve.domaci = settings.getString(PREF_DOMACI, "Ne najdem");
     	MenuNastavitve.telefonska = settings.getString(PREF_TELEFONSKA, "Ne najdem");
     	MenuNastavitve.igralec = settings.getBoolean(PREF_IGRALEC, false);
     	MenuNastavitve.kraj = settings.getString(PREF_VREME_KRAJ, "Ne najdem");
+    	
     	
     	nastaviIPstreznika();
     	nastaviKraj();
     	nastaviTel();
     	nastaviIgralca();
     	nastaviVremeKraj();
+    	nastaviIpTomcat();
     
+    }
+    
+    public void nastaviIpTomcat(){
+        AlarmActivity.iptomcat = MenuNastavitve.iptomcat;
     }
     
     public void nastaviVremeKraj(){
         ActivityVreme.kraj = MenuNastavitve.kraj;
+        AlarmActivity.kraj = MenuNastavitve.kraj;
        // ActivityVreme.kraj = MenuNastavitve.domaci;
     }
     

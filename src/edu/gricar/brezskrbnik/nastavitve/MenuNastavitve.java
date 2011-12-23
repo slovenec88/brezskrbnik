@@ -13,6 +13,7 @@ public class MenuNastavitve extends PreferenceActivity {
 	ApplicationBrezskrbnik app;
 	public static final String PREF_SHRANI="SHRANI";
 	public static final String PREF_IP = "IP";
+	public static final String PREF_IP_TOMCAT = "IPTOMCAT";
 	public static final String PREF_DEBUG_LOCATION = "PREF_DEBUG_LOCATION";
 	public static final String PREF_DOMACI = "DOMACI";
 	public static final String PREF_TELEFONSKA = "TELEFONSKA";
@@ -23,6 +24,7 @@ public class MenuNastavitve extends PreferenceActivity {
 	public static int frequency=10;
 	public static String debug_location="localhost";
 	public static String ip="192.168.1.65";
+	public static String iptomcat ="192.168.116.1";
 	public static String domaci="dobletinska+ulica+5";
 	public static String telefonska = "040597224";
 	public static boolean igralec = true;
@@ -42,6 +44,7 @@ public class MenuNastavitve extends PreferenceActivity {
 		shrani = settings.getBoolean(PREF_SHRANI, true);
 		debug_location = settings.getString(PREF_DEBUG_LOCATION, "localhost");
 		ip = settings.getString(PREF_IP, "192.168.1.1");
+		iptomcat = settings.getString(PREF_IP_TOMCAT, "192.168.116.1");
 		domaci = settings.getString(PREF_DOMACI, "dobletinska+ulica+5");
 		telefonska = settings.getString(PREF_TELEFONSKA, "040597224");
 		igralec = settings.getBoolean(PREF_IGRALEC, true);
@@ -51,6 +54,7 @@ public class MenuNastavitve extends PreferenceActivity {
 		editor.putString(PREF_TELEFONSKA, settings.getString(PREF_TELEFONSKA, "040597224"));
 		editor.putString(PREF_DOMACI, domaci);
 		editor.putString(PREF_IP, ip);
+		editor.putString(PREF_IP_TOMCAT, iptomcat);
 		editor.putBoolean(PREF_IGRALEC, igralec);
 		editor.putString(PREF_VREME_KRAJ, kraj);
 		editor.commit();

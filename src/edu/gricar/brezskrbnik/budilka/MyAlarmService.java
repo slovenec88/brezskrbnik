@@ -38,6 +38,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -60,6 +61,7 @@ public class MyAlarmService extends Service {
 	private static final String TAG = "MyAlarmService";
 	NotificationManager mNM;
 	MyAlarmTask mytask;
+	Ringtone rrr;
 
 	@Override
 	public void onCreate() {
@@ -74,40 +76,11 @@ public class MyAlarmService extends Service {
 		long mili = 3000;
 		v.vibrate(mili);
 		 
-		Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-	     if(alert == null){
-	         alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-	         if(alert == null){  
-	             alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);               
-	         }
-	     }
+		Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+		rrr = RingtoneManager.getRingtone(getApplicationContext(), alert);
+		rrr.play();
 
-		
-		  MediaPlayer mp = new MediaPlayer();
-		    try {
-				//mp.setDataSource(this, alert);
-		    	mp.setDataSource("sdcard/media/audio/ringtones/Old_Phone.mp3");
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		    try {
-				mp.prepare();
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		    mp.start();
-			showNotification();
+		showNotification();
 
 	}
 
@@ -116,6 +89,7 @@ public class MyAlarmService extends Service {
 		// Cancel the notification -- we use the same ID that we had used to
 		// start it
 		mNM.cancel(R.string.alarm_stop);
+
 
 		// Tell the user we stopped.
 		//Toast.makeText(this, "Konec A", Toast.LENGTH_SHORT).show();

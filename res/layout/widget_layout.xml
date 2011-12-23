@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dip"
-    android:background="@drawable/myshape"
     android:orientation="vertical" >
 
 	<TextView android:layout_margin="4dip" android:text="Static Text"
@@ -21,11 +20,12 @@
 	    android:id="@+id/linearLayout1"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content" >
-
+
 		<ImageView
 		    android:id="@+id/imageWidgetVreme"
-		    android:layout_width="wrap_content"
+		    android:layout_width="80dp"
 		    android:layout_height="wrap_content"
+		    android:scaleType="centerInside"
 		    android:src="@drawable/lib_cross" />
 
 		<LinearLayout
@@ -42,6 +42,12 @@
 
 			<TextView
 			    android:id="@+id/tvWidgetVremeTemp"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="TextView" />
+
+			<TextView
+			    android:id="@+id/tvWidgetVremeKraj"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
 			    android:text="TextView" />

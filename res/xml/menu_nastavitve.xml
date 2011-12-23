@@ -45,10 +45,17 @@
         </CheckBoxPreference>
 
         <EditTextPreference
-            android:dialogTitle="Ip:"
+            android:dialogTitle="Ip za IIS:"
             android:key="IP"
             android:summary="Ip IIS strežnika"
-            android:title="Ip" >
+            android:title="IIS IP" >
+        </EditTextPreference>
+        
+        <EditTextPreference
+            android:dialogTitle="Ip za Tomcat:"
+            android:key="IPTOMCAT"
+            android:summary="Ip Tomcat strežnika"
+            android:title="Tomcat IP" >
         </EditTextPreference>
     </PreferenceCategory>
 

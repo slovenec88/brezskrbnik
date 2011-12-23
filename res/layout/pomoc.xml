@@ -5,11 +5,11 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
     <LinearLayout android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:layout_width="match_parent" android:orientation="vertical">
-        <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:id="@+id/textView1" android:layout_width="wrap_content" android:text="V meniju nastavi IP ISS strežnika za nastavljanje budilke preko spleta in vpiši domači naslov, da te bo pot vodila naravnost domov."></TextView>
+        <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_height="wrap_content" android:id="@+id/textView1" android:layout_width="wrap_content" android:text="V meniju nastavi IP ISS strežnika za nastavljanje budilke preko spleta in vpiši domači naslov, da te bo pot vodila naravnost domov."></TextView>
     </LinearLayout>
-    <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_width="wrap_content" android:text="      Obvezno nastavi tudi telefonsko številko [SOS] v primeru, da rabiš pomoč!"></TextView>
-    <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:id="@+id/textView3" android:layout_width="wrap_content" android:text="     Nek zvok mora biti poimenovan in v mapi sdcard/media/audio/ringtones/Old_Phone.mp3 "></TextView>
-    <TextView android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:id="@+id/textView4" android:layout_height="wrap_content" android:text="     Ko te aplikacija vpraša s katerim programom želiš uporabljati navigacijo, izberi Maps!"></TextView>
+    <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_width="wrap_content" android:text="      Obvezno nastavi tudi telefonsko številko [SOS] v primeru, da rabiš pomoč!"></TextView>
+    <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_height="wrap_content" android:id="@+id/textView3" android:layout_width="wrap_content" android:text="     Nek zvok mora biti poimenovan in v mapi sdcard/media/audio/ringtones/Old_Phone.mp3 "></TextView>
+    <TextView android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:id="@+id/textView4" android:layout_height="wrap_content" android:text="     Ko te aplikacija vpraša s katerim programom želiš uporabljati navigacijo, izberi Maps!"></TextView>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -36,6 +36,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Vreme - AccuParser" android:onClick="onVreme"/>
+
+        <Button
+            android:id="@+id/buttonService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" android:onClick="onService"/>
 
     </LinearLayout>
     

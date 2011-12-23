@@ -2,6 +2,8 @@ package edu.gricar.brezskrbnik.widget;
 
 import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
 import edu.gricar.brezskrbnik.R;
+import edu.gricar.brezskrbnik.vreme.ActivityVreme;
+import edu.gricar.brezskrbnik.vreme.ActivityVreme.BackgroundAsyncTask;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
@@ -20,9 +22,6 @@ public class UpdateWidgetService extends Service {
         RSSReader rss = new RSSReader();
         if(app.getNews()==null || app.getNews().size()==0)
             app.setNews(rss.readNews());
-        //app.vreme[0].getOpis().toString();
-        
-        
         
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this
                 .getApplicationContext());
@@ -34,9 +33,15 @@ public class UpdateWidgetService extends Service {
                 RemoteViews remoteViews = new RemoteViews(getPackageName(),
                         R.layout.widget_layout);
                 remoteViews.setTextViewText(R.id.TextViewNews, app.getNews().get(app.getStevec()%app.getNews().size()));
-                /*remoteViews.setTextViewText(R.id.tvWidgetVremeOpis, app.vreme[0].getOpis().toString());
-                remoteViews.setTextViewText(R.id.tvWidgetVremeTemp, app.vreme[0].getRealfeel().toString());
-                remoteViews.setImageViewResource(R.id.imageWidgetVreme, R.drawable.weather_1);*/
+                try {
+                    remoteViews.setTextViewText(R.id.tvWidgetVremeOpis, app.vreme[0].getOpis().toString());
+                    remoteViews.setTextViewText(R.id.tvWidgetVremeTemp, app.vreme[0].getRealfeel().toString());
+                    remoteViews.setImageViewResource(R.id.imageWidgetVreme, R.drawable.weather_1);
+                    remoteViews.setTextViewText(R.id.tvWidgetVremeKraj, ActivityVreme.kraj);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 
                 app.setStevec(app.getStevec()+1);
                 appWidgetManager.updateAppWidget(widgetId, remoteViews);
