@@ -11,6 +11,7 @@ import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -55,8 +56,9 @@ public class AlarmActivity extends Activity implements OnClickListener {
     public static String iptomcat ="";
 
     private static final String NAMESPACE2 = "http://service.gricar.edu";
-    private static final String SOAP_ACTION2 = NAMESPACE + METHOD_NAME;
     private static final String METHOD_NAME2 = "Parser";
+    private static final String SOAP_ACTION2 = NAMESPACE2 + METHOD_NAME2;
+    
     private static String URL2 = "";
 
     private PendingIntent mAlarmSender;
@@ -81,9 +83,11 @@ public class AlarmActivity extends Activity implements OnClickListener {
                 new Intent(AlarmActivity.this, MyAlarmService.class), 0);
 
         URL = "http://" + ip + "/service1.asmx";
-        URL2 = "http://" + iptomcat + ":8080/testja/services/Service2?wsdl";
+        URL2 = "http://" + iptomcat + ":8080/AccuServerIP/services/Service2?wsdl";
         tvIP.setText(URL);
         // pingIIS();
+        
+      
 
     }
 
@@ -102,81 +106,107 @@ public class AlarmActivity extends Activity implements OnClickListener {
     public void nastaviSliko(){
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("1_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_1));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("2_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_2));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("3_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_3));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("4_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_4));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("5_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_5));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("6_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_6));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("7_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_7));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("8_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_8));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("11_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_11));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("12_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_12));
+                btnOK.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("13_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_13));
+                btnOK.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("14_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_14));
+                btnOK.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("15_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_15));
+                btnOK.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("16_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_16));
+                btnOK.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("17_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_17));
+                btnOK.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("18_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_18));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("19_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_19));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("20_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_20));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("21_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_21));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("22_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_22));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("23_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_23));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("24_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_24));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("25_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_25));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("26_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_26));
+                btnOK.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("29_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_29));
+                btnOK.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("30_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_30));
+                btnPreklici.getBackground().setAlpha(45);
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("31_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_31));
