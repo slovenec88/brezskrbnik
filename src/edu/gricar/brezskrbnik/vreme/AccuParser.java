@@ -5,6 +5,9 @@ import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
 import org.htmlcleaner.XPatherException;
 
+import com.memetix.mst.language.Language;
+import com.memetix.mst.translate.Translate;
+
 import android.app.Application;
 
 import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
@@ -71,6 +74,8 @@ public class AccuParser {
             kraj = kraj.replace("Ž", "z");
             kraj = kraj.replace("Š", "s");
             
+            Translate.setKey("FFFA78669F3D3DBACCEC690DFA60E95A5F8D86FF");
+            
             TagNode stran = xmlCleaner("http://www.accuweather.com/en-us/si/" + kraj + "/" + kraj + "/forecast.aspx");
             TagNode[] all = findInfo(stran, "//div[@id='content_640']//div[@class='fltLeft'][1]//div[@style='margin-bottom: 10px;']");
 
@@ -81,7 +86,7 @@ public class AccuParser {
                 TagNode[] info = findInfo(all[i], "//span");
                 
                 System.out.println(info[0].getText() + "\t" + info[5].getText().toString().replace("&deg;", "°") + "\t" + info[1].getText());
-                vreme[i] = new Vreme(info[0].getText().toString(), info[5].getText().toString().replace("&deg;", "°"), info[3].getText().toString().replace("&deg;", "°"), info[1].getText().toString(), img_url[img_url.length-1]);
+                vreme[i] = new Vreme(info[0].getText().toString(), info[5].getText().toString().replace("&deg;", "°"), info[3].getText().toString().replace("&deg;", "°"), Translate.execute(info[1].getText().toString(), Language.SLOVENIAN) , img_url[img_url.length-1]);
             }
             app.setVreme(vreme);
             

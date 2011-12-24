@@ -55,23 +55,5 @@ public class ApplicationBrezskrbnik extends Application {
 	public void setVreme(Vreme[] vreme){
 	    this.vreme = vreme.clone();
 	}	
-	
-	//widget
-	private List<String> news;
-    private int stevec;
-    public List<String> getNews() {
-        return news;
-    }
-    public void setNews(List<String> news) {
-        this.news = news;
-    }
-    public int getStevec() {
-        return stevec;
-    }
-    public void setStevec(int stevec) {
-        this.stevec = stevec;
-    }
-    
-    
-	
+
 	}

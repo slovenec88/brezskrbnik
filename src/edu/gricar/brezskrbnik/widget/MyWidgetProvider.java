@@ -25,7 +25,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
                 PendingIntent pendingIntent = PendingIntent.getService(
                         context.getApplicationContext(), 0, intent,
                         PendingIntent.FLAG_UPDATE_CURRENT);
-                remoteViews.setOnClickPendingIntent(R.id.buttonNext, pendingIntent);
+                //remoteViews.setOnClickPendingIntent(R.id.buttonNext, pendingIntent);
 
                 // Finally update all widgets with the information about the click
                 // listener

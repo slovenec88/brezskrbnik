@@ -3,57 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dip"
+    android:gravity="center"
     android:orientation="vertical" >
 
-	<TextView android:layout_margin="4dip" android:text="Static Text"
-		android:id="@+id/TextViewNews" android:layout_width="match_parent"
-		android:layout_height="wrap_content" style="@android:style/TextAppearance.Medium"
-		android:layout_gravity="center"></TextView>
-
-	<Button
-	    android:id="@+id/buttonNext"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="Next" />
+    <TextView
+        android:id="@+id/tvWidgetVremeKraj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+	<ImageView
+	    android:id="@+id/imageWidgetVreme"
+	    android:layout_width="120dp"
+	    android:layout_height="120dp"
+	    android:scaleType="centerInside"
+	    android:src="@drawable/lib_cross" />
 
 	<LinearLayout
-	    android:id="@+id/linearLayout1"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" >
-
-		<ImageView
-		    android:id="@+id/imageWidgetVreme"
-		    android:layout_width="80dp"
-		    android:layout_height="wrap_content"
-		    android:scaleType="centerInside"
-		    android:src="@drawable/lib_cross" />
+	    android:id="@+id/linearLayout2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
 
-		<LinearLayout
-		    android:id="@+id/linearLayout2"
+		<TextView
+		    android:id="@+id/tvWidgetVremeTemp"
 		    android:layout_width="wrap_content"
-		    android:layout_height="match_parent"
-		    android:orientation="vertical" >
+		    android:layout_height="wrap_content"
+		    android:text="TextView" android:layout_gravity="center"/>
 
-			<TextView
-			    android:id="@+id/tvWidgetVremeOpis"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:text="TextView" />
-
-			<TextView
-			    android:id="@+id/tvWidgetVremeTemp"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:text="TextView" />
-
-			<TextView
-			    android:id="@+id/tvWidgetVremeKraj"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:text="TextView" />
-
-		</LinearLayout>
-
+	    <TextView
+	        android:id="@+id/tvWidgetVremeOpis"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="TextView" android:layout_gravity="center"/>
 	</LinearLayout>
 
 </LinearLayout>
