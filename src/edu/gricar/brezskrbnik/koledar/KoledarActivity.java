@@ -1,17 +1,24 @@
 package edu.gricar.brezskrbnik.koledar;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import edu.gricar.brezskrbnik.R;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 public class KoledarActivity extends Activity {
@@ -21,7 +28,10 @@ public class KoledarActivity extends Activity {
     private static final int DATE_DIALOG_ID = 2;
     private static final int DATE_DIALOG_ID2 = 3;
     Button odDatum, doDatum, odUra, doUra;
-    
+    Spinner spinner;
+    ArrayList<Koledar> koledar = new ArrayList<Koledar>();
+    String[] spinTabela;
+    public static int oznacen=1;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +41,8 @@ public class KoledarActivity extends Activity {
         doDatum = (Button) findViewById(R.id.btnDogodkiDoDatum);
         odUra = (Button) findViewById(R.id.btnDogodkiOdCas);
         doUra = (Button) findViewById(R.id.btnDogodkiDoCas);
+        spinner = (Spinner) findViewById(R.id.spinnerDogodkiKoledar);
+        koledarjiNaVoljoSo();
         zacetnaFazapolnjena();
     }
 
@@ -47,7 +59,46 @@ public class KoledarActivity extends Activity {
         
         odDatum.setText(DateFormat.getDateInstance(DateFormat.LONG).format(c.getTime()).toString());
         doDatum.setText(DateFormat.getDateInstance(DateFormat.LONG).format(c.getTime()).toString());
+        
+        
+        spinTabela = new String[koledar.size()];
+        
+        for (int i=0; i < koledar.size(); i++){
+            spinTabela[i] = koledar.get(i).getIme();
+        }
+        
+        ArrayAdapter<String> katAdapter = new ArrayAdapter<String>( this, android.R.layout.simple_spinner_item, spinTabela);
+        katAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(katAdapter);
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+        
+        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+            oznacen = position + 1; //ker se koledarji zaènejo z 1
+        }
 
+        
+        public void onNothingSelected(AdapterView<?> parentView) {}
+        });
+    }
+
+    void koledarjiNaVoljoSo(){
+        String[] projection = new String[] { "_id", "name" };
+        Uri calendars = Uri.parse("content://com.android.calendar/calendars");
+             
+        Cursor managedCursor = managedQuery(calendars, projection, null, null, null);
+        if (managedCursor.moveToFirst()) {
+            String calName; 
+            String calId; 
+            int nameColumn = managedCursor.getColumnIndex("name"); 
+            int idColumn = managedCursor.getColumnIndex("_id");
+            do {
+                
+               calName = managedCursor.getString(nameColumn);
+               calId = managedCursor.getString(idColumn);
+               koledar.add(new Koledar(calName, calId));
+            } while (managedCursor.moveToNext());
+           }
+        
     }
 
     private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
@@ -113,5 +164,10 @@ public class KoledarActivity extends Activity {
 
     public void onDogodkiDoCas(View v){
         showDialog(TIME_DIALOG_ID2);
+    }
+    
+    public void onDogodkiPrikazi(View v){
+        Intent i = new Intent(this.getApplicationContext(), CalendarActivity.class);
+        startActivity(i);
     }
 }

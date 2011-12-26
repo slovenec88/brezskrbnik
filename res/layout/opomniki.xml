@@ -32,7 +32,7 @@
                 android:id="@+id/btnDogodkiPrikazi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Prikaži dogodke" />
+                android:text="Prikaži dogodke" android:onClick="onDogodkiPrikazi"/>
 
             <TextView
                 android:id="@+id/textView8"

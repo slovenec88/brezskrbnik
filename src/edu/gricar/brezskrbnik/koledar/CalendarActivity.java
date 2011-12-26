@@ -78,14 +78,14 @@ public class CalendarActivity extends Activity {
            Log.i(DEBUG_TAG, "Starting Calendar Test");
 
             //ListAllCalendarDetails();
-            ListAllCalendarEntries(5);
+            ListAllCalendarEntries(KoledarActivity.oznacen);
            // will return the last found calendar with "Test" in the name
-           int iTestCalendarID = ListSelectedCalendars();
+           //int iTestCalendarID = ListSelectedCalendars();
 
            // change this when you know which calendar you want to use
            // If you create a new calendar, you may need to manually sync the
            // phone first
-           if (iTestCalendarID != 0) {
+           /*if (iTestCalendarID != 0) {
 
                Uri newEvent2 = MakeNewCalendarEntry2(iTestCalendarID);
                int eventID2 = Integer.parseInt(newEvent2.getLastPathSegment());
@@ -108,13 +108,13 @@ public class CalendarActivity extends Activity {
            }
 
            Log.i(DEBUG_TAG, "Ending Calendar Test");
-
+*/
 
        } catch (Exception e) {
            Log.e(DEBUG_TAG, "General failure", e);
        }
    }
-
+/*
    private int ListSelectedCalendars() {
        int result = 0;
        String[] projection = new String[] { "_id", "name" };
@@ -172,7 +172,7 @@ public class CalendarActivity extends Activity {
        }
 
    }
-
+*/
    private void ListAllCalendarEntries(int calID) {
 	   int riki = 0;
        Cursor managedCursor = getCalendarManagedCursor(null, "calendar_id="
@@ -202,7 +202,7 @@ public class CalendarActivity extends Activity {
        }
 
    }
-
+/*
    private void ListCalendarEntry(int eventId) {
        Cursor managedCursor = getCalendarManagedCursor(null, null, "events/" + eventId);
    
@@ -331,7 +331,7 @@ public class CalendarActivity extends Activity {
        Log.i(DEBUG_TAG, "Deleted " + iNumRowsDeleted + " calendar entry.");
 
        return iNumRowsDeleted;
-   }
+   }*/
 
    /**
     * @param projection
