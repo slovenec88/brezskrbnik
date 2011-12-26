@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Handler.Callback;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.webkit.ConsoleMessage;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -26,7 +24,6 @@ public class GameActivity extends Activity {
 	private static final long COMPUTER_DELAY_MS = 1500;
 
 	private Handler mHandler = new Handler(new MyHandlerCallback());
-	private Random mRnd = new Random();
 	private GameView mGameView;
 	private TextView mInfoView;
 	private Button mButtonNext;

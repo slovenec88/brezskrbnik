@@ -9,7 +9,7 @@
         android:id="@+id/ivDialogSlika"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/lib_cross" />
+        android:src="@drawable/lib_cross" android:onClick="onDialogVreme"/>
 
     <TextView
         android:id="@+id/tvDialogTemp"

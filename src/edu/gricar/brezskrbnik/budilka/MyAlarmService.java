@@ -19,10 +19,7 @@ package edu.gricar.brezskrbnik.budilka;
 // Need the following import to get access to the app resources, since this
 // class is in a sub-package.
 
-import java.io.IOException;
-import java.text.BreakIterator;
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import edu.gricar.brezskrbnik.ActivityBrezskrbnik;
@@ -36,17 +33,13 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.Vibrator;
-
 import android.util.Log;
-import android.widget.Toast;
 
 /**
  * This is an example of implementing an application service that will run in

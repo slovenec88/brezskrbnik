@@ -20,7 +20,7 @@
                 android:id="@+id/vreme_slika_danes"
                 android:layout_width="179dp"
                 android:layout_height="179dp"
-                android:src="@drawable/weather_54" />
+                android:src="@drawable/lib_cross" android:onClick="onSlikaDanes"/>
         </LinearLayout>
 
         <LinearLayout
@@ -81,7 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_weight="0.74"
-                    android:src="@drawable/pomoc" />
+                    android:src="@drawable/lib_cross" android:onClick="onSlikaDanesP1"/>
 
                 <TextView
                     android:id="@+id/vreme_tekst_dan_danesP1"
@@ -114,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_weight="0.73"
-                    android:src="@drawable/pomoc" />
+                    android:src="@drawable/lib_cross" android:onClick="onSlikaDanesP2"/>
 
                 <TextView
                     android:id="@+id/vreme_tekst_dan_danesP2"
@@ -147,7 +147,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_weight="0.74"
-                    android:src="@drawable/pomoc" />
+                    android:src="@drawable/lib_cross" android:onClick="onSlikaDanesP3"/>
 
                 <TextView
                     android:id="@+id/vreme_tekst_dan_danesP3"

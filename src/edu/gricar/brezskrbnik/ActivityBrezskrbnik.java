@@ -1,17 +1,15 @@
 package edu.gricar.brezskrbnik;
 
-import java.util.List;
 
-import com.google.android.maps.Overlay;
 
 import edu.gricar.brezskrbnik.budilka.AlarmActivity;
 import edu.gricar.brezskrbnik.koledar.CalendarActivity;
+import edu.gricar.brezskrbnik.koledar.KoledarActivity;
 import edu.gricar.brezskrbnik.krizciKrozci.MainActivity;
 import edu.gricar.brezskrbnik.nastavitve.MenuNastavitve;
 import edu.gricar.brezskrbnik.navigacija.KjeSemActivity;
 import edu.gricar.brezskrbnik.pomoc.ActivityO;
 import edu.gricar.brezskrbnik.pomoc.ActivityPomoc;
-import edu.gricar.brezskrbnik.vreme.AccuParser;
 import edu.gricar.brezskrbnik.vreme.ActivityVreme;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,16 +18,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
 import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,11 +40,8 @@ import android.widget.Toast;
 public class ActivityBrezskrbnik extends Activity implements OnClickListener{
 	ApplicationBrezskrbnik app;
 	Menu nMenu;
-    private static final int TEST_LIST_ACTIVITY_ID = 0;
     public static final String PREF_NAME="PREF_TELEFONSKA";
 	private static final int EXIT_DIALOG = 0;
-	private static final String PREF_SHRANI = null;
-	private static final String PREF_DEBUG_LOCATION = null;
 	private static final String PREF_IP = "IP";
 	private static final String PREF_IP_TOMCAT = "IPTOMCAT";
 	private static final String PREF_DOMACI = "DOMACI";
@@ -199,8 +190,11 @@ public class ActivityBrezskrbnik extends Activity implements OnClickListener{
     
     public void onOpomniki(View v) {
 //CalendarActivity
-		Intent i = new Intent(this.getApplicationContext(), CalendarActivity.class);
-    	startActivity(i);
+		/*Intent i = new Intent(this.getApplicationContext(), CalendarActivity.class);
+    	startActivity(i);*/
+    	
+    	Intent i = new Intent(this.getApplicationContext(), KoledarActivity.class);
+        startActivity(i);
     
     	    	/*
     	 * Intent i = new Intent(this.getApplicationContext(), Opomniki.class);

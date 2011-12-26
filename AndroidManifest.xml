@@ -59,6 +59,12 @@
         </activity>
         <activity
             android:label="@string/app_name"
+            android:name=".koledar.KoledarActivity" >
+            <intent-filter >
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
             android:name=".koledar.CalendarActivity" >
             <intent-filter >
             </intent-filter>

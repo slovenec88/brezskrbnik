@@ -1,14 +1,10 @@
 package edu.gricar.brezskrbnik;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import edu.gricar.brezskrbnik.bazaOpomnik.DBAdapterStevec;
 import edu.gricar.brezskrbnik.koledar.Opomniki;
-import edu.gricar.brezskrbnik.vreme.AccuParser;
 import edu.gricar.brezskrbnik.vreme.Vreme;
 import android.app.Application;
-import android.widget.Toast;
 
 public class ApplicationBrezskrbnik extends Application {
 	ApplicationBrezskrbnik app;

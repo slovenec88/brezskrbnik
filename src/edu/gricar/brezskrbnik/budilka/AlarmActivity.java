@@ -11,7 +11,7 @@ import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -273,7 +273,6 @@ public class AlarmActivity extends Activity implements OnClickListener {
                 
                 //bla bla
                 int sek = (ura * 60 * 60) + minuta * 60;
-                long firstTime = SystemClock.elapsedRealtime();
 
                 /*
                  * // Schedule the alarm! AlarmManager am =
@@ -328,6 +327,16 @@ public class AlarmActivity extends Activity implements OnClickListener {
                 
             }
         });
+        
+        ivSlika.setOnClickListener(new OnClickListener() {
+            
+            public void onClick(View v) {
+                String url = "http://www.accuweather.com/en-us/si/" + kraj + "/" + kraj + "/hourly24.aspx";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
 
     }
     
@@ -355,7 +364,6 @@ public class AlarmActivity extends Activity implements OnClickListener {
 
         if (v.getId() == R.id.btnAlarm) {
             int sek = (ura * 60 * 60) + minuta * 60;
-            long firstTime = SystemClock.elapsedRealtime();
 
             /*
              * // Schedule the alarm! AlarmManager am =

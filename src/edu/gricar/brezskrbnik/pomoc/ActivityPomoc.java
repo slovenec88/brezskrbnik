@@ -1,16 +1,12 @@
 package edu.gricar.brezskrbnik.pomoc;
 
 import edu.gricar.brezskrbnik.R;
-import edu.gricar.brezskrbnik.R.layout;
-import edu.gricar.brezskrbnik.budilka.AlarmActivity;
 import edu.gricar.brezskrbnik.service.ServiceConsumerActivity;
 import edu.gricar.brezskrbnik.vreme.ActivityVreme;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
 
 public class ActivityPomoc extends Activity{
 	   @Override

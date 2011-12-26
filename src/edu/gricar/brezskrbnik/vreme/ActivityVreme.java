@@ -1,29 +1,22 @@
 package edu.gricar.brezskrbnik.vreme;
 
-import android.R.integer;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import edu.gricar.brezskrbnik.ActivityBrezskrbnik;
 import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
 import edu.gricar.brezskrbnik.R;
-import edu.gricar.brezskrbnik.budilka.AlarmActivity;
-import edu.gricar.brezskrbnik.budilka.AlarmActivity.BackgroundAsyncTask;
-import edu.gricar.brezskrbnik.krizciKrozci.MainActivity;
-import edu.gricar.brezskrbnik.nastavitve.MenuNastavitve;
-import edu.gricar.brezskrbnik.pomoc.ActivityO;
 
 public class ActivityVreme extends Activity{
     ApplicationBrezskrbnik app;
@@ -31,7 +24,7 @@ public class ActivityVreme extends Activity{
     Menu nMenu;
     ImageView ivslika1, ivslika2, ivslika3, ivslika4;
     ImageView[] slikar;
-   
+
     TextView tvDanDanes, tvTempDanes;
     TextView tvDanDanesPlus1, tvTempDanesPlus1;
     TextView tvDanDanesPlus2, tvTempDanesPlus2;
@@ -44,47 +37,106 @@ public class ActivityVreme extends Activity{
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.vreme);
         app = (ApplicationBrezskrbnik) getApplication();
-        
+
         tvVremeKraj = (TextView) findViewById(R.id.tv_kraj);
         tvVremeKraj.setText("Kraj: " + kraj);
         ivslika1 = (ImageView) findViewById(R.id.vreme_slika_danes);
         ivslika2 = (ImageView) findViewById(R.id.vreme_slika_danesPlus1);
         ivslika3 = (ImageView) findViewById(R.id.vreme_slika_danesPlus2);
         ivslika4 = (ImageView) findViewById(R.id.vreme_slika_danesPlus3);
-          
+
         slikar = new ImageView[4];
         slikar[0] = ivslika1;
         slikar[1] = ivslika2;
         slikar[2] = ivslika3;
         slikar[3] = ivslika4;
-        
+
         tvDanDanes = (TextView) findViewById(R.id.vreme_tekst_dan_danes);
         tvTempDanes = (TextView) findViewById(R.id.vreme_tekst_real_danes);
-        
+
         tvDanDanesPlus1 = (TextView) findViewById(R.id.vreme_tekst_dan_danesP1);
         tvTempDanesPlus1 = (TextView) findViewById(R.id.vreme_tekst_real_danesP1);
-        
+
         tvDanDanesPlus2 = (TextView) findViewById(R.id.vreme_tekst_dan_danesP2);
         tvTempDanesPlus2 = (TextView) findViewById(R.id.vreme_tekst_real_danesP2);
-        
+
         tvDanDanesPlus3 = (TextView) findViewById(R.id.vreme_tekst_dan_danesP3);
         tvTempDanesPlus3 = (TextView) findViewById(R.id.vreme_tekst_real_danesP3);
 
+        try {
+            ivslika1.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v) {
+                    String url = "http://www.accuweather.com/en-us/si/" + kraj + "/" + kraj + "/details1.aspx";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ivslika2.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v) {
+                    String url = "http://www.accuweather.com/en-us/si/" + kraj + "/" + kraj + "/details2.aspx";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ivslika3.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v) {
+                    String url = "http://www.accuweather.com/en-us/si/" + kraj + "/" + kraj + "/details3.aspx";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ivslika4.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v) {
+                    String url = "http://www.accuweather.com/en-us/si/" + kraj + "/" + kraj + "/details4.aspx";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
-    
-    
-    
+
     public void nafilajPodatke(){
-        
+
+
         tvDanDanesPlus2.setText(app.vreme[2].getDatum());
         tvTempDanesPlus2.setText(app.vreme[2].getRealfeel());
-        
+
         tvDanDanesPlus3.setText(app.vreme[3].getDatum());
         tvTempDanesPlus3.setText(app.vreme[3].getRealfeel());
-        
+
         tvDanDanes.setText(app.vreme[0].getDatum());
         tvTempDanes.setText(app.vreme[0].getRealfeel());
-        
+
         tvDanDanesPlus1.setText(app.vreme[1].getDatum());
         tvTempDanesPlus1.setText(app.vreme[1].getRealfeel());
 
@@ -214,14 +266,14 @@ public class ActivityVreme extends Activity{
         }
     }
 
-     
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         nMenu = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.nastavitve_vreme, nMenu);
         return true;
-        
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -230,11 +282,11 @@ public class ActivityVreme extends Activity{
             try {
                 BackgroundAsyncTask mt = new BackgroundAsyncTask();
                 mt.execute(app);
-                
-                
-                
+
+
+
             } catch (Exception e) {
-                // TODO Auto-generated catch block
+                
                 e.printStackTrace();
             }
             return true;
@@ -249,38 +301,38 @@ public class ActivityVreme extends Activity{
 
         return false;
     }
-    
+
     public class BackgroundAsyncTask extends AsyncTask<ApplicationBrezskrbnik, Integer, String> {
         ProgressDialog dialogWait;
-        
-        
+
+
         @Override
         protected String doInBackground(ApplicationBrezskrbnik ... params) {
-            
-            
-            
+
+
+
             //dialogWait.setCancelable(true);
             new AccuParser(params[0]);
-            
+
             //dialogWait.dismiss();
-            
+
             return "";
         }
         @Override
         protected void onPreExecute() {
             //dialogWait = ProgressDialog.show(ActivityVreme.this, "Osvežujem", "Poèakajte prosim..", true);
-            
+
 
             setProgressBarIndeterminateVisibility(true);
-            
+
         }
-        
+
         protected void onPostExecute(String arg) {
             try {
                 setProgressBarIndeterminateVisibility(false);
                 nafilajPodatke();
             } catch (Exception e) {
-                // TODO Auto-generated catch block
+                
                 Toast.makeText(ActivityVreme.this, "Napaka v komunikaciji ali neobstojeè kraj!",
                         Toast.LENGTH_LONG).show();
                 e.printStackTrace();

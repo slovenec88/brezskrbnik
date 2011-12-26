@@ -7,9 +7,6 @@ import org.htmlcleaner.XPatherException;
 
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
-
-import android.app.Application;
-
 import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
 
 public class AccuParser {

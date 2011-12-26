@@ -1,13 +1,8 @@
 package edu.gricar.brezskrbnik.pomoc;
 
 import edu.gricar.brezskrbnik.R;
-import edu.gricar.brezskrbnik.R.layout;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.widget.Button;
-import android.widget.TextView;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;

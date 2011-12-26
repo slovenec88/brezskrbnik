@@ -51,8 +51,6 @@ package edu.gricar.brezskrbnik.koledar;
 
 
 import edu.gricar.brezskrbnik.R;
-import edu.gricar.brezskrbnik.R.id;
-import edu.gricar.brezskrbnik.R.layout;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -73,7 +71,7 @@ public class CalendarActivity extends Activity {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.opomniki2);
        //ListAllCalendarEntries(2);
-       info = (TextView) this.findViewById(R.id.textViewInfo);
+      info = (TextView) this.findViewById(R.id.textViewInfo);
        miki = (TextView) this.findViewById(R.id.tvKoledar);
        miki.setMovementMethod(new ScrollingMovementMethod());
        try {
