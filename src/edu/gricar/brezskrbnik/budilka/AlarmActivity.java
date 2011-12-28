@@ -363,7 +363,7 @@ public class AlarmActivity extends Activity implements OnClickListener {
     public void onClick(View v) {
 
         if (v.getId() == R.id.btnAlarm) {
-            int sek = (ura * 60 * 60) + minuta * 60;
+            //int sek = (ura * 60 * 60) + minuta * 60;
 
             /*
              * // Schedule the alarm! AlarmManager am =
@@ -376,21 +376,18 @@ public class AlarmActivity extends Activity implements OnClickListener {
             // Single run
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
-
-            Date dt = new Date();
-            ura = tp.getCurrentHour();
-            minuta = tp.getCurrentMinute();
-            int trenutnaura = dt.getHours();
-            int trenutnaminuta = dt.getMinutes();
+            int sek;
+            ura = calendar.getTime().getHours();
+            minuta = calendar.getTime().getMinutes();
+            int trenutnaura = ura;
+            int trenutnaminuta = minuta;
 
             int cajt = (trenutnaura * 60 * 60) + trenutnaminuta * 60;
 
             sek = 86400 - cajt;
 
             int preracunan = (ura * 60 * 60) + minuta * 60;
-
-            // sek = cajt - preracunan;
-
+            
             if (cajt < preracunan) {
                 sek = preracunan - cajt;
             } else

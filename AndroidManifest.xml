@@ -40,9 +40,6 @@
             android:label="@string/app_name"
             android:name=".vreme.ActivityVreme" >
             <intent-filter >
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -136,8 +133,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-            <activity
+        <activity
             android:label="@string/app_name"
             android:name=".service.ServiceConsumerActivity" >
             <intent-filter >
@@ -156,9 +152,8 @@
         </receiver>
 
         <service android:name=".widget.UpdateWidgetService" />
-        
-        <service android:name=".service.WordService"></service>
-        
+        <service android:name=".service.WordService" >
+        </service>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

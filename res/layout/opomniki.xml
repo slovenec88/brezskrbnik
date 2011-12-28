@@ -16,50 +16,6 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Prikaz"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <Button
-                android:id="@+id/btnDogodkiPrikazi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Prikaži dogodke" android:onClick="onDogodkiPrikazi"/>
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Vpis"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,14 +43,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Od" android:onClick="onDogodkiOdDatum"/>
+                    android:onClick="onDogodkiOdDatum"
+                    android:text="Od" />
 
                 <Button
                     android:id="@+id/btnDogodkiOdCas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Button" android:onClick="onDogodkiOdCas"/>
+                    android:onClick="onDogodkiOdCas"
+                    android:text="Button" />
             </LinearLayout>
 
             <TextView
@@ -113,14 +71,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Do" android:onClick="onDogodkiDoDatum"/>
+                    android:onClick="onDogodkiDoDatum"
+                    android:text="Do" />
 
                 <Button
                     android:id="@+id/btnDogodkiDoCas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Button" android:onClick="onDogodkiDoCas"/>
+                    android:onClick="onDogodkiDoCas"
+                    android:text="Button" />
             </LinearLayout>
 
             <TextView
@@ -146,8 +106,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Opis dogodka" >
-
-                <requestFocus />
             </EditText>
 
             <TextView
@@ -161,6 +119,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <Button
+                android:id="@+id/btnDogodkiPrikazi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onDogodkiPrikazi"
+                android:text="Prikaži dogodke" />
+
             <LinearLayout
                 android:id="@+id/LinearLayout01"
                 android:layout_width="match_parent"
@@ -168,23 +133,20 @@
 
                 <Button
                     android:id="@+id/btnDogodkiDokoncano"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="onDogodkiDokoncano"
                     android:text="Dokončano" />
 
                 <Button
                     android:id="@+id/btnDogodkiPovrni"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="onDogodkiPovrni"
                     android:text="Povrni" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </ScrollView>

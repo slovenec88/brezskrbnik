@@ -1,13 +1,17 @@
 package edu.gricar.brezskrbnik.koledar;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+
 import edu.gricar.brezskrbnik.R;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -18,8 +22,11 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class KoledarActivity extends Activity {
 
@@ -28,11 +35,14 @@ public class KoledarActivity extends Activity {
     private static final int DATE_DIALOG_ID = 2;
     private static final int DATE_DIALOG_ID2 = 3;
     Button odDatum, doDatum, odUra, doUra;
+    EditText tvime, tvkje, tvopis;
     Spinner spinner;
     ArrayList<Koledar> koledar = new ArrayList<Koledar>();
     String[] spinTabela;
     public static int oznacen=1;
-
+    Calendar koledarDo;
+    Calendar koledarOd;
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opomniki);
@@ -42,6 +52,10 @@ public class KoledarActivity extends Activity {
         odUra = (Button) findViewById(R.id.btnDogodkiOdCas);
         doUra = (Button) findViewById(R.id.btnDogodkiDoCas);
         spinner = (Spinner) findViewById(R.id.spinnerDogodkiKoledar);
+        tvime = (EditText) findViewById(R.id.etDogodkiIme);
+        tvkje = (EditText) findViewById(R.id.etDogodkiLokacija);
+        tvopis = (EditText) findViewById(R.id.etDogodkiOpis);
+        
         koledarjiNaVoljoSo();
         zacetnaFazapolnjena();
     }
@@ -49,13 +63,18 @@ public class KoledarActivity extends Activity {
 
     void zacetnaFazapolnjena(){
         Calendar c = Calendar.getInstance();
+        koledarDo = Calendar.getInstance();
+        koledarOd = Calendar.getInstance();
         int h,m;
         h = c.getTime().getHours();
         m = c.getTime().getMinutes();
         odUra.setText("" + h + ":" + m);
         h+=1;
         doUra.setText("" + h + ":" + m);
-
+        koledarOd.set(Calendar.HOUR_OF_DAY, h);
+        koledarOd.set(Calendar.MINUTE, m);
+        koledarDo.set(Calendar.HOUR_OF_DAY, h+1);
+        koledarDo.set(Calendar.MINUTE, m+1);
         
         odDatum.setText(DateFormat.getDateInstance(DateFormat.LONG).format(c.getTime()).toString());
         doDatum.setText(DateFormat.getDateInstance(DateFormat.LONG).format(c.getTime()).toString());
@@ -104,12 +123,16 @@ public class KoledarActivity extends Activity {
     private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             odUra.setText(""+hourOfDay + ":" +minute);
+            koledarOd.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            koledarOd.set(Calendar.MINUTE, minute);
         }
     };
 
     private TimePickerDialog.OnTimeSetListener mTimeSetListener2 = new TimePickerDialog.OnTimeSetListener() {
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             doUra.setText(""+hourOfDay + ":" +minute);
+            koledarDo.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            koledarDo.set(Calendar.MINUTE, minute);
         }
     };
 
@@ -118,6 +141,7 @@ public class KoledarActivity extends Activity {
             Calendar d = Calendar.getInstance();
             d.set(year, month, day);
             odDatum.setText(DateFormat.getDateInstance(DateFormat.LONG).format(d.getTime()).toString());
+            koledarOd.set(year, month, day);
         }
     };
 
@@ -126,6 +150,7 @@ public class KoledarActivity extends Activity {
             Calendar d = Calendar.getInstance();
             d.set(year, month, day);
             doDatum.setText(DateFormat.getDateInstance(DateFormat.LONG).format(d.getTime()).toString());
+            koledarDo.set(year, month, day);
         }
     };
 
@@ -170,4 +195,77 @@ public class KoledarActivity extends Activity {
         Intent i = new Intent(this.getApplicationContext(), CalendarActivity.class);
         startActivity(i);
     }
+    
+    public void onDogodkiPovrni(View v){
+        this.finish();
+    }
+    
+    private String getCalendarUriBase() {
+        String calendarUriBase = null;
+        Uri calendars = Uri.parse("content://calendar/calendars");
+        Cursor managedCursor = null;
+        try {
+            managedCursor = managedQuery(calendars, null, null, null, null);
+        } catch (Exception e) {
+            // eat
+        }
+
+        if (managedCursor != null) {
+            calendarUriBase = "content://calendar/";
+        } else {
+            calendars = Uri.parse("content://com.android.calendar/calendars");
+            try {
+                managedCursor = managedQuery(calendars, null, null, null, null);
+            } catch (Exception e) {
+                // eat
+            }
+
+            if (managedCursor != null) {
+                calendarUriBase = "content://com.android.calendar/";
+            }
+
+        }
+
+        return calendarUriBase;
+    }
+    
+    public void onDogodkiDokoncano(View v){
+        //private Uri MakeNewCalendarEntry(int calId) {
+            if (tvime.getText().toString().equalsIgnoreCase("") || koledarOd.getTimeInMillis() > koledarDo.getTimeInMillis()){
+                Toast.makeText(this, "Vpiši ime / vnesi pravilen èas", Toast.LENGTH_LONG).show();
+            }
+            else{
+            ContentValues event = new ContentValues();
+
+            event.put("calendar_id", oznacen);
+            event.put("title", tvime.getText().toString());
+            event.put("description", tvopis.getText().toString());
+            event.put("eventLocation", tvkje.getText().toString());
+            
+   
+            
+            //long startTime = System.currentTimeMillis() + 2000 * 60 * 60;
+            //long startTime = System.currentTimeMillis() + time
+            long endTime = System.currentTimeMillis() + 2000 * 60 * 60 * 2;
+
+            event.put("dtstart", koledarOd.getTimeInMillis());
+            event.put("dtend", koledarDo.getTimeInMillis());
+
+            event.put("allDay", 0); // 0 for false, 1 for true
+            event.put("eventStatus", 1);
+            event.put("visibility", 0);
+            event.put("transparency", 0);
+            event.put("hasAlarm", 0); // 0 for false, 1 for true
+           
+            Uri eventsUri = Uri.parse(getCalendarUriBase()+"events");
+
+            Uri insertedUri = getContentResolver().insert(eventsUri, event);
+            Toast.makeText(this, "Dogodek: " + tvime.getText().toString() + " vpisan.", Toast.LENGTH_LONG).show();
+            this.finish();
+            }
+            //return insertedUri;
+       // }
+    }
+    
+    
 }
