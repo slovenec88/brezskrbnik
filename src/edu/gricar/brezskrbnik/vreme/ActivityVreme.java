@@ -123,6 +123,14 @@ public class ActivityVreme extends Activity{
             e.printStackTrace();
         }
 
+        try{
+            BackgroundAsyncTask mt = new BackgroundAsyncTask();
+            mt.execute(app);
+        }
+        catch (Exception ex){
+
+        }
+
     }
 
     public void nafilajPodatke(){
@@ -286,7 +294,7 @@ public class ActivityVreme extends Activity{
 
 
             } catch (Exception e) {
-                
+
                 e.printStackTrace();
             }
             return true;
@@ -332,7 +340,7 @@ public class ActivityVreme extends Activity{
                 setProgressBarIndeterminateVisibility(false);
                 nafilajPodatke();
             } catch (Exception e) {
-                
+
                 Toast.makeText(ActivityVreme.this, "Napaka v komunikaciji ali neobstojeè kraj!",
                         Toast.LENGTH_LONG).show();
                 e.printStackTrace();
