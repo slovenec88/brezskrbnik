@@ -19,6 +19,13 @@
         android:orientation="vertical" >
 
         <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onVreme"
+            android:text="Vreme - AccuParser" />
+
+        <Button
             android:id="@+id/buttonCheckBoxi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,19 +36,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onKnof"
-            android:text="Senzor test" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Vreme - AccuParser" android:onClick="onVreme"/>
+            android:text="Senzor" />
 
         <Button
             android:id="@+id/buttonService"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" android:onClick="onService"/>
+            android:text="Service" android:onClick="onService"/>
 
     </LinearLayout>
     

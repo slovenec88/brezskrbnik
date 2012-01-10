@@ -3,7 +3,6 @@ package edu.gricar.brezskrbnik.widget;
 import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
 import edu.gricar.brezskrbnik.R;
 import edu.gricar.brezskrbnik.vreme.ActivityVreme;
-import edu.gricar.brezskrbnik.vreme.ActivityVreme.BackgroundAsyncTask;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
@@ -11,45 +10,40 @@ import android.os.IBinder;
 import android.widget.RemoteViews;
 
 public class UpdateWidgetService extends Service {
-    
+
     ApplicationBrezskrbnik app;
     RemoteViews remoteViews;
-    
+
     @Override
     public void onStart(Intent intent, int startId) {
         if(app==null)
             app = (ApplicationBrezskrbnik) getApplicationContext();
-       
-        
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this
                 .getApplicationContext());
 
         int[] appWidgetIds = intent
-                .getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+        .getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
         if (appWidgetIds.length > 0) {
             for (int widgetId : appWidgetIds) {
                 remoteViews = new RemoteViews(getPackageName(),
                         R.layout.widget_layout);
-                
+
                 try {
                     remoteViews.setTextViewText(R.id.tvWidgetVremeOpis, app.vreme[0].getOpis().toString());
                     remoteViews.setTextViewText(R.id.tvWidgetVremeTemp, app.vreme[0].getRealfeel().toString());
-                    
                     nastaviSliko();
-                    
                     remoteViews.setTextViewText(R.id.tvWidgetVremeKraj, ActivityVreme.kraj);
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                }
-                
+                }         
                 appWidgetManager.updateAppWidget(widgetId, remoteViews);
             }
             stopSelf();
         }
         super.onStart(intent, startId);
     }
-    
+
     public void nastaviSliko(){
         if (app.vreme[0].getSlika().toString().equalsIgnoreCase("1_int.jpg")){
             remoteViews.setImageViewResource(R.id.imageWidgetVreme, R.drawable.weather_1);
@@ -170,12 +164,10 @@ public class UpdateWidgetService extends Service {
         }
         if (app.vreme[0].getSlika().toString().equalsIgnoreCase("40_int.jpg")){
             remoteViews.setImageViewResource(R.id.imageWidgetVreme, R.drawable.weather_44);
-        }       
-}
-    
+        }
+    }
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO Auto-generated method stub
         return null;
     }
 }

@@ -62,9 +62,9 @@ public class AccuParser {
     public AccuParser(ApplicationBrezskrbnik app){
         
         try {
-            String kraj = ActivityVreme.kraj;
-            kraj = kraj.replace(" ", "-");
-            kraj = kraj.replace("è", "c");
+                String kraj = ActivityVreme.kraj;
+                kraj = kraj.replace(" ", "-");
+                kraj = kraj.replace("è", "c");
             kraj = kraj.replace("ž", "z");
             kraj = kraj.replace("š", "s");
             kraj = kraj.replace("È", "c");

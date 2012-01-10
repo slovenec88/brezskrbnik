@@ -11,10 +11,14 @@ import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -46,14 +50,16 @@ public class AlarmActivity extends Activity implements OnClickListener {
     static String casIzspleta = "";
     static String vremenskiPodatki ="";
     EditText et;
-    TextView tvIP, tvVreme, tvDialogOpis, tvDialogTemp;
+    TextView tvIP, tvVreme, tvDialogOpis, tvDialogTemp, tv1, tv2;
     TimePicker tp;
     int ura, minuta;
     Dialog dialogOdlocitev;
     ImageView ivSlika;
     Button btnOK;
     Button btnPreklici;
+    Button button, button2, button3;
     public static String iptomcat ="";
+    Menu nMenu;
 
     private static final String NAMESPACE2 = "http://service.gricar.edu";
     private static final String METHOD_NAME2 = "Parser";
@@ -70,11 +76,13 @@ public class AlarmActivity extends Activity implements OnClickListener {
         setContentView(R.layout.alarmll);
         showDialog(TIME_DIALOG_ID);
         app = (ApplicationBrezskrbnik) getApplication();
-        Button button = (Button) findViewById(R.id.btnAlarm);
-        Button button3 = (Button) findViewById(R.id.btnPovezi);
+        button = (Button) findViewById(R.id.btnAlarm);
+        button3 = (Button) findViewById(R.id.btnPovezi);
         tvIP = (TextView) findViewById(R.id.textViewIP);
+        tv1 = (TextView) findViewById(R.id.textViewBudilka1);
+        tv2 = (TextView) findViewById(R.id.textViewBudilka2);
         button.setOnClickListener(this);
-        Button button2 = (Button) findViewById(R.id.btnAlarmStop);
+        button2 = (Button) findViewById(R.id.btnAlarmStop);
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
         tp = (TimePicker) findViewById(R.id.timePicker1);
@@ -106,107 +114,107 @@ public class AlarmActivity extends Activity implements OnClickListener {
     public void nastaviSliko(){
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("1_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_1));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("2_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_2));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("3_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_3));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("4_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_4));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("5_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_5));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("6_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_6));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("7_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_7));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("8_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_8));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("11_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_11));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("12_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_12));
-                btnOK.getBackground().setAlpha(45);
+                btnPreklici.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("13_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_13));
-                btnOK.getBackground().setAlpha(45);
+                btnPreklici.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("14_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_14));
-                btnOK.getBackground().setAlpha(45);
+                btnPreklici.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("15_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_15));
-                btnOK.getBackground().setAlpha(45);
+                btnPreklici.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("16_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_16));
-                btnOK.getBackground().setAlpha(45);
+                btnPreklici.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("17_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_17));
-                btnOK.getBackground().setAlpha(45);
+                btnPreklici.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("18_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_18));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("19_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_19));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("20_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_20));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("21_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_21));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("22_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_22));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("23_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_23));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("24_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_24));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("25_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_25));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("26_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_26));
-                btnOK.getBackground().setAlpha(45);
+                btnPreklici.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("29_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_29));
-                btnOK.getBackground().setAlpha(45);
+                btnPreklici.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("30_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_30));
-                btnPreklici.getBackground().setAlpha(45);
+                btnOK.setTextColor(Color.parseColor("#177BBD"));
             }
             if (vremenskiPodatkiTabela[0].toString().equalsIgnoreCase("31_int.jpg")){
                 ivSlika.setImageDrawable(getResources().getDrawable(R.drawable.weather_31));
@@ -263,8 +271,8 @@ public class AlarmActivity extends Activity implements OnClickListener {
         nastaviSliko();
         tvDialogTemp.setText(vremenskiPodatkiTabela[1].toString());
         tvDialogOpis.setText(vremenskiPodatkiTabela[2].toString());
-        dialogOdlocitev.setTitle("Bova vstala ob " + tp.getCurrentHour().toString() 
-                + ":" + tp.getCurrentMinute().toString() + "?" );
+        dialogOdlocitev.setTitle("Bova vstala " + tp.getCurrentMinute().toString() + " minut èez " +
+                tp.getCurrentHour().toString() + "?" );
         dialogOdlocitev.show();
         
         btnOK.setOnClickListener(new OnClickListener() {
@@ -547,6 +555,37 @@ public class AlarmActivity extends Activity implements OnClickListener {
             return "napaka: "+e.toString();
         }
 
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        nMenu = menu;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.nastavitve_budilka, nMenu);
+        return true;
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.SpremeniPogled:
+            tv1.setVisibility(View.VISIBLE);
+            tv2.setVisibility(View.VISIBLE);
+            tvIP.setVisibility(View.VISIBLE);
+            button.setVisibility(View.VISIBLE);
+            button2.setVisibility(View.VISIBLE);
+            button3.setVisibility(View.VISIBLE);
+            
+            return true;
+        default:// Generic catch all for all the other menu resources
+            if (!item.hasSubMenu()) {
+                Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            break;
+        }
+
+        return false;
     }
 }
 

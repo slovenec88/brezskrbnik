@@ -241,12 +241,6 @@ public class KoledarActivity extends Activity {
             event.put("title", tvime.getText().toString());
             event.put("description", tvopis.getText().toString());
             event.put("eventLocation", tvkje.getText().toString());
-            
-   
-            
-            //long startTime = System.currentTimeMillis() + 2000 * 60 * 60;
-            //long startTime = System.currentTimeMillis() + time
-            long endTime = System.currentTimeMillis() + 2000 * 60 * 60 * 2;
 
             event.put("dtstart", koledarOd.getTimeInMillis());
             event.put("dtend", koledarDo.getTimeInMillis());

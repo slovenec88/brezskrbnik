@@ -75,9 +75,6 @@ public class KjeSemActivity extends MapActivity {
 
 		locationManager.requestLocationUpdates(provider, 2000, 10,   
 				locationListener);
-		
-		
-
 	}
 
 	private final LocationListener locationListener = new LocationListener() {

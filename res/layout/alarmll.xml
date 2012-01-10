@@ -24,35 +24,35 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textViewBudilka1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="RAIN projekt"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium" android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center" >
+            android:gravity="center" android:visibility="visible">
 
             <Button
                 android:id="@+id/btnAlarm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/alarm_start" />
+                android:text="@string/alarm_start" android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btnAlarmStop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/alarm_stop" />
+                android:text="@string/alarm_stop" android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btnPovezi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/btnPovezi" />
+                android:text="@string/btnPovezi" android:visibility="gone"/>
 
         </LinearLayout>
 
@@ -60,7 +60,7 @@
             android:id="@+id/textViewIP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView" android:visibility="gone"/>
 
     </LinearLayout>
 
@@ -76,18 +76,18 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewBudilka2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="IP projekt"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium" android:visibility="gone"/>
 
         <Button
             android:id="@+id/btnIPpovezi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onAccu"
-            android:text="Vključi budilko" />
+            android:text="Nastavi budilko" />
 
     </LinearLayout>
 

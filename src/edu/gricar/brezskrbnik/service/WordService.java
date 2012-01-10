@@ -14,7 +14,7 @@ import android.util.Log;
 
 public class WordService extends Service {
     private Timer timer = new Timer();
-    private static final long UPDATE_INTERVAL = 5000;
+    private static final long UPDATE_INTERVAL = 500000*7;
     private final IBinder mBinder = new MyBinder();
 
     public void onCreate() {
