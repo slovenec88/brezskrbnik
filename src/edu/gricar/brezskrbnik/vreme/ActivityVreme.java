@@ -40,7 +40,7 @@ public class ActivityVreme extends Activity{
         app = (ApplicationBrezskrbnik) getApplication();
 
         tvVremeKraj = (TextView) findViewById(R.id.tv_kraj);
-        tvVremeKraj.setText("Kraj: " + kraj);
+
         ivslika1 = (ImageView) findViewById(R.id.vreme_slika_danes);
         ivslika2 = (ImageView) findViewById(R.id.vreme_slika_danesPlus1);
         ivslika3 = (ImageView) findViewById(R.id.vreme_slika_danesPlus2);
@@ -123,24 +123,52 @@ public class ActivityVreme extends Activity{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        try{
-            
-            if (preferences.getString("tvDanDanes", null).equalsIgnoreCase("NULL")){
-                // ni napake :-)
-            }
-        }
-        catch (Exception ex){
-            BackgroundAsyncTask mt = new BackgroundAsyncTask();
-            mt.execute(app);
-        }
     }
 
     @Override
     protected void onPause() 
     {
         super.onPause();
+        shraniPodatke();
+    }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        try {
+            app.vreme = new Vreme[]{new Vreme(), new Vreme(), new Vreme(), new Vreme()};
+            app.vreme[0].setSlika(preferences.getString("ivslika1", null));
+            app.vreme[1].setSlika(preferences.getString("ivslika2", null));
+            app.vreme[2].setSlika(preferences.getString("ivslika3", null));
+            app.vreme[3].setSlika(preferences.getString("ivslika4", null));
+            
+            // dejansko si nared druge spremenljivke, ker še ni appja dokler ne poklièeš parserja
+
+            tvDanDanes.setText(preferences.getString("tvDanDanes", null));
+            tvTempDanes.setText(preferences.getString("tvTempDanes", null));
+            tvDanDanesPlus1.setText(preferences.getString("tvDanDanesPlus1", null));
+            tvTempDanesPlus1.setText(preferences.getString("tvTempDanesPlus1", null));
+            tvDanDanesPlus2.setText(preferences.getString("tvDanDanesPlus2", null));
+            tvTempDanesPlus2.setText(preferences.getString("tvTempDanesPlus2", null));
+            tvDanDanesPlus3.setText(preferences.getString("tvDanDanesPlus3", null));
+            tvTempDanesPlus3.setText(preferences.getString("tvTempDanesPlus3", null));
+            tvVremeKraj.setText(preferences.getString("tvVremeKraj", null));
+
+            nafilajSlike();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        if (tvDanDanes.getText().toString().equalsIgnoreCase("textview")){
+            BackgroundAsyncTask mt = new BackgroundAsyncTask();
+            mt.execute(app);
+        }
+    }
+
+    public void shraniPodatke(){
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
@@ -176,38 +204,8 @@ public class ActivityVreme extends Activity{
         editor.commit();
     }
 
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-
-        try {
-            app.vreme[0].setSlika(preferences.getString("ivslika1", null));
-            app.vreme[1].setSlika(preferences.getString("ivslika2", null));
-            app.vreme[2].setSlika(preferences.getString("ivslika3", null));
-            app.vreme[3].setSlika(preferences.getString("ivslika4", null));
-
-            tvDanDanes.setText(preferences.getString("tvDanDanes", null));
-            tvTempDanes.setText(preferences.getString("tvTempDanes", null));
-            tvDanDanesPlus1.setText(preferences.getString("tvDanDanesPlus1", null));
-            tvTempDanesPlus1.setText(preferences.getString("tvTempDanesPlus1", null));
-            tvDanDanesPlus2.setText(preferences.getString("tvDanDanesPlus2", null));
-            tvTempDanesPlus2.setText(preferences.getString("tvTempDanesPlus2", null));
-            tvDanDanesPlus3.setText(preferences.getString("tvDanDanesPlus3", null));
-            tvTempDanesPlus3.setText(preferences.getString("tvTempDanesPlus3", null));
-            tvVremeKraj.setText(preferences.getString("tvVremeKraj", null));
-
-            nafilajSlike();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
-
     public void nafilajTekst(){
-
+        tvVremeKraj.setText("Kraj: " + kraj);
         tvDanDanesPlus2.setText(app.vreme[2].getDatum());
         tvTempDanesPlus2.setText(app.vreme[2].getRealfeel());
 
@@ -220,6 +218,7 @@ public class ActivityVreme extends Activity{
         tvDanDanesPlus1.setText(app.vreme[1].getDatum());
         tvTempDanesPlus1.setText(app.vreme[1].getRealfeel());
 
+        shraniPodatke();
     }
 
     public void nafilajSlike(){
@@ -413,8 +412,8 @@ public class ActivityVreme extends Activity{
         protected void onPostExecute(String arg) {
             try {
                 setProgressBarIndeterminateVisibility(false);
-                nafilajTekst();
                 nafilajSlike();
+                nafilajTekst();
             } catch (Exception e) {
 
                 Toast.makeText(ActivityVreme.this, "Napaka v komunikaciji ali neobstojeè kraj!",

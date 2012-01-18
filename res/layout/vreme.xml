@@ -36,24 +36,27 @@
                 android:onClick="onSlikaDanes"
                 android:src="@drawable/lib_cross" />
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout6"
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
             android:layout_width="match_parent"
-            android:layout_height="172dp"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:layout_height="match_parent" >
 
             <TextView
                 android:id="@+id/tv_kraj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/vreme_tekst_dan_danes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/tv_kraj"
+                android:layout_marginTop="39dp"
                 android:text="TextView"
                 android:textColor="#FFFFFF" />
 
@@ -61,9 +64,13 @@
                 android:id="@+id/vreme_tekst_real_danes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/vreme_tekst_dan_danes"
                 android:text="TextView"
                 android:textColor="#FFFFFF" />
-        </LinearLayout>
+
+        </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout

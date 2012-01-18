@@ -56,4 +56,8 @@ public class Vreme {
         this.opis = opis;
         this.slika = slika;
     }
+    
+    public Vreme(){
+        
+    }
 }
