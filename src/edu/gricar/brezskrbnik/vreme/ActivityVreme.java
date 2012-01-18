@@ -3,6 +3,7 @@ package edu.gricar.brezskrbnik.vreme;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -122,19 +123,90 @@ public class ActivityVreme extends Activity{
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         try{
+            
+            if (preferences.getString("tvDanDanes", null).equalsIgnoreCase("NULL")){
+                // ni napake :-)
+            }
+        }
+        catch (Exception ex){
             BackgroundAsyncTask mt = new BackgroundAsyncTask();
             mt.execute(app);
         }
-        catch (Exception ex){
+    }
 
+    @Override
+    protected void onPause() 
+    {
+        super.onPause();
+
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        String ivslika1S = app.vreme[0].getSlika();
+        String ivslika2S = app.vreme[1].getSlika();
+        String ivslika3S = app.vreme[2].getSlika();
+        String ivslika4S = app.vreme[3].getSlika();
+
+        String tvDanDanesS = tvDanDanes.getText().toString();
+        String tvTempDanesS = tvTempDanes.getText().toString();
+        String tvDanDanesPlus1S = tvDanDanesPlus1.getText().toString();
+        String tvTempDanesPlus1S = tvTempDanesPlus1.getText().toString();
+        String tvDanDanesPlus2S = tvDanDanesPlus2.getText().toString();
+        String tvTempDanesPlus2S = tvTempDanesPlus2.getText().toString();
+        String tvDanDanesPlus3S = tvDanDanesPlus3.getText().toString();
+        String tvTempDanesPlus3S = tvTempDanesPlus3.getText().toString();
+        String tvVremeKrajS = tvVremeKraj.getText().toString();
+
+        editor.putString("ivslika1", ivslika1S);
+        editor.putString("ivslika2", ivslika2S);
+        editor.putString("ivslika3", ivslika3S);
+        editor.putString("ivslika4", ivslika4S);
+        editor.putString("tvDanDanes", tvDanDanesS);
+        editor.putString("tvTempDanes", tvTempDanesS);
+        editor.putString("tvDanDanesPlus1", tvDanDanesPlus1S);
+        editor.putString("tvTempDanesPlus1", tvTempDanesPlus1S);
+        editor.putString("tvDanDanesPlus2", tvDanDanesPlus2S);
+        editor.putString("tvTempDanesPlus2", tvTempDanesPlus2S);
+        editor.putString("tvDanDanesPlus3", tvDanDanesPlus3S);
+        editor.putString("tvTempDanesPlus3", tvTempDanesPlus3S);
+        editor.putString("tvVremeKraj", tvVremeKrajS);
+
+        editor.commit();
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+
+        try {
+            app.vreme[0].setSlika(preferences.getString("ivslika1", null));
+            app.vreme[1].setSlika(preferences.getString("ivslika2", null));
+            app.vreme[2].setSlika(preferences.getString("ivslika3", null));
+            app.vreme[3].setSlika(preferences.getString("ivslika4", null));
+
+            tvDanDanes.setText(preferences.getString("tvDanDanes", null));
+            tvTempDanes.setText(preferences.getString("tvTempDanes", null));
+            tvDanDanesPlus1.setText(preferences.getString("tvDanDanesPlus1", null));
+            tvTempDanesPlus1.setText(preferences.getString("tvTempDanesPlus1", null));
+            tvDanDanesPlus2.setText(preferences.getString("tvDanDanesPlus2", null));
+            tvTempDanesPlus2.setText(preferences.getString("tvTempDanesPlus2", null));
+            tvDanDanesPlus3.setText(preferences.getString("tvDanDanesPlus3", null));
+            tvTempDanesPlus3.setText(preferences.getString("tvTempDanesPlus3", null));
+            tvVremeKraj.setText(preferences.getString("tvVremeKraj", null));
+
+            nafilajSlike();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
 
     }
 
-    public void nafilajPodatke(){
-
+    public void nafilajTekst(){
 
         tvDanDanesPlus2.setText(app.vreme[2].getDatum());
         tvTempDanesPlus2.setText(app.vreme[2].getRealfeel());
@@ -148,6 +220,9 @@ public class ActivityVreme extends Activity{
         tvDanDanesPlus1.setText(app.vreme[1].getDatum());
         tvTempDanesPlus1.setText(app.vreme[1].getRealfeel());
 
+    }
+
+    public void nafilajSlike(){
         for (int i = 0; i < 4; i++){
             String slika = app.vreme[i].getSlika();
 
@@ -338,7 +413,8 @@ public class ActivityVreme extends Activity{
         protected void onPostExecute(String arg) {
             try {
                 setProgressBarIndeterminateVisibility(false);
-                nafilajPodatke();
+                nafilajTekst();
+                nafilajSlike();
             } catch (Exception e) {
 
                 Toast.makeText(ActivityVreme.this, "Napaka v komunikaciji ali neobstojeè kraj!",
