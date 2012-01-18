@@ -1,5 +1,7 @@
 package edu.gricar.brezskrbnik.vreme;
 
+import java.text.DateFormat;
+import java.util.Date;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -30,7 +32,7 @@ public class ActivityVreme extends Activity{
     TextView tvDanDanesPlus1, tvTempDanesPlus1;
     TextView tvDanDanesPlus2, tvTempDanesPlus2;
     TextView tvDanDanesPlus3, tvTempDanesPlus3;
-    TextView tvVremeKraj;
+    TextView tvVremeKraj, tvDatumSinhro;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class ActivityVreme extends Activity{
         app = (ApplicationBrezskrbnik) getApplication();
 
         tvVremeKraj = (TextView) findViewById(R.id.tv_kraj);
+        tvDatumSinhro = (TextView) findViewById(R.id.vreme_tekst_datumsinhronizacije);
 
         ivslika1 = (ImageView) findViewById(R.id.vreme_slika_danes);
         ivslika2 = (ImageView) findViewById(R.id.vreme_slika_danesPlus1);
@@ -129,32 +132,34 @@ public class ActivityVreme extends Activity{
     protected void onPause() 
     {
         super.onPause();
-        shraniPodatke();
+        try {
+            shraniPodatke();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onResume()
     {
         super.onResume();
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         try {
+            SharedPreferences preferences = getPreferences(MODE_PRIVATE);
             app.vreme = new Vreme[]{new Vreme(), new Vreme(), new Vreme(), new Vreme()};
-            app.vreme[0].setSlika(preferences.getString("ivslika1", null));
-            app.vreme[1].setSlika(preferences.getString("ivslika2", null));
-            app.vreme[2].setSlika(preferences.getString("ivslika3", null));
-            app.vreme[3].setSlika(preferences.getString("ivslika4", null));
-            
-            // dejansko si nared druge spremenljivke, ker še ni appja dokler ne poklièeš parserja
+            app.vreme[0].setSlika(preferences.getString("ivslika1", ""));
+            app.vreme[1].setSlika(preferences.getString("ivslika2", ""));
+            app.vreme[2].setSlika(preferences.getString("ivslika3", ""));
+            app.vreme[3].setSlika(preferences.getString("ivslika4", ""));
 
-            tvDanDanes.setText(preferences.getString("tvDanDanes", null));
-            tvTempDanes.setText(preferences.getString("tvTempDanes", null));
-            tvDanDanesPlus1.setText(preferences.getString("tvDanDanesPlus1", null));
-            tvTempDanesPlus1.setText(preferences.getString("tvTempDanesPlus1", null));
-            tvDanDanesPlus2.setText(preferences.getString("tvDanDanesPlus2", null));
-            tvTempDanesPlus2.setText(preferences.getString("tvTempDanesPlus2", null));
-            tvDanDanesPlus3.setText(preferences.getString("tvDanDanesPlus3", null));
-            tvTempDanesPlus3.setText(preferences.getString("tvTempDanesPlus3", null));
-            tvVremeKraj.setText(preferences.getString("tvVremeKraj", null));
+            tvDanDanes.setText(preferences.getString("tvDanDanes", ""));
+            tvTempDanes.setText(preferences.getString("tvTempDanes", ""));
+            tvDanDanesPlus1.setText(preferences.getString("tvDanDanesPlus1", ""));
+            tvTempDanesPlus1.setText(preferences.getString("tvTempDanesPlus1", ""));
+            tvDanDanesPlus2.setText(preferences.getString("tvDanDanesPlus2", ""));
+            tvTempDanesPlus2.setText(preferences.getString("tvTempDanesPlus2", ""));
+            tvDanDanesPlus3.setText(preferences.getString("tvDanDanesPlus3", ""));
+            tvTempDanesPlus3.setText(preferences.getString("tvTempDanesPlus3", ""));
+            tvVremeKraj.setText(preferences.getString("tvVremeKraj", ""));
 
             nafilajSlike();
         } catch (Exception e) {
@@ -162,7 +167,7 @@ public class ActivityVreme extends Activity{
             e.printStackTrace();
         }
 
-        if (tvDanDanes.getText().toString().equalsIgnoreCase("textview")){
+        if (tvDanDanes.getText().toString().equalsIgnoreCase("")){
             BackgroundAsyncTask mt = new BackgroundAsyncTask();
             mt.execute(app);
         }
@@ -217,9 +222,10 @@ public class ActivityVreme extends Activity{
 
         tvDanDanesPlus1.setText(app.vreme[1].getDatum());
         tvTempDanesPlus1.setText(app.vreme[1].getRealfeel());
-
+        tvDatumSinhro.setText("Posodobljeno!");
         shraniPodatke();
     }
+    
 
     public void nafilajSlike(){
         for (int i = 0; i < 4; i++){
@@ -352,8 +358,11 @@ public class ActivityVreme extends Activity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         nMenu = menu;
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.nastavitve_vreme, nMenu);
+        MenuItem menuitem = menu.findItem(R.id.OsveziPodatke);
+        menuitem.setTitle(preferences.getString("Cas", ""));
         return true;
 
     }
@@ -390,23 +399,13 @@ public class ActivityVreme extends Activity{
 
         @Override
         protected String doInBackground(ApplicationBrezskrbnik ... params) {
-
-
-
-            //dialogWait.setCancelable(true);
             new AccuParser(params[0]);
-
-            //dialogWait.dismiss();
 
             return "";
         }
         @Override
         protected void onPreExecute() {
-            //dialogWait = ProgressDialog.show(ActivityVreme.this, "Osvežujem", "Poèakajte prosim..", true);
-
-
             setProgressBarIndeterminateVisibility(true);
-
         }
 
         protected void onPostExecute(String arg) {
@@ -414,8 +413,14 @@ public class ActivityVreme extends Activity{
                 setProgressBarIndeterminateVisibility(false);
                 nafilajSlike();
                 nafilajTekst();
+                
+                SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                Date d = new Date();
+                editor.putString("Cas", DateFormat.getDateTimeInstance().format(d));
+                editor.commit();
+                
             } catch (Exception e) {
-
                 Toast.makeText(ActivityVreme.this, "Napaka v komunikaciji ali neobstojeè kraj!",
                         Toast.LENGTH_LONG).show();
                 e.printStackTrace();

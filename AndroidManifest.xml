@@ -15,7 +15,8 @@
     <application
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:name=".ApplicationBrezskrbnik" >
+        android:name=".ApplicationBrezskrbnik"
+        android:theme="@style/MyTheme" >
         <uses-library android:name="com.google.android.maps" />
 
         <activity
@@ -23,6 +24,7 @@
             android:name="ActivitySplashScreen" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

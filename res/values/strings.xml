@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, ActivityBrezskrbnik!</string>
     <string name="app_name">brezskrbnik</string>
     <string name="btnNastaviBudilko">Nastavi mi budilko na _:_</string>
     <string name="btnNastaviOpomnik">Dodaj mi opomnik</string>
@@ -10,4 +9,7 @@
      <string name="alarm_name">AlarmTest</string>
      <string name="btnPovezi">Poveži se na IIS strežnik</string>
      <string name="posljisos">[Pošlji SOS!]</string>
+     <string name="menu_title_osvezi">Osveži</string>
+     <string name="ne">Ne</string>
+     <string name="da">Da</string>
 </resources>

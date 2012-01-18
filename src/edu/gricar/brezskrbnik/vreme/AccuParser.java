@@ -11,7 +11,7 @@ import edu.gricar.brezskrbnik.ApplicationBrezskrbnik;
 
 public class AccuParser {
     ApplicationBrezskrbnik app;
-    
+
     public TagNode xmlCleaner(String url) {
 
         try {
@@ -60,37 +60,35 @@ public class AccuParser {
     }
 
     public AccuParser(ApplicationBrezskrbnik app){
-        
+
         try {
-                String kraj = ActivityVreme.kraj;
-                kraj = kraj.replace(" ", "-");
-                kraj = kraj.replace("è", "c");
+            String kraj = ActivityVreme.kraj;
+            kraj = kraj.replace(" ", "-");
+            kraj = kraj.replace("è", "c");
             kraj = kraj.replace("ž", "z");
             kraj = kraj.replace("š", "s");
             kraj = kraj.replace("È", "c");
             kraj = kraj.replace("Ž", "z");
             kraj = kraj.replace("Š", "s");
-            
+
             Translate.setKey("FFFA78669F3D3DBACCEC690DFA60E95A5F8D86FF");
-            
+
             TagNode stran = xmlCleaner("http://www.accuweather.com/en-us/si/" + kraj + "/" + kraj + "/forecast.aspx");
             TagNode[] all = findInfo(stran, "//div[@id='content_640']//div[@class='fltLeft'][1]//div[@style='margin-bottom: 10px;']");
 
             Vreme[] vreme = new Vreme[all.length];
             for(int i=0; i<all.length; i++){
                 String[] img_url = findInfo(all[i], "//div[@class='ForecastIcon']//img")[0].getAttributeByName("src").toString().split("/");
-               
+
                 TagNode[] info = findInfo(all[i], "//span");
-                
-                System.out.println(info[0].getText() + "\t" + info[5].getText().toString().replace("&deg;", "°") + "\t" + info[1].getText());
                 vreme[i] = new Vreme(info[0].getText().toString(), info[5].getText().toString().replace("&deg;", "°"), info[3].getText().toString().replace("&deg;", "°"), Translate.execute(info[1].getText().toString(), Language.SLOVENIAN) , img_url[img_url.length-1]);
             }
             app.setVreme(vreme);
-            
+
         } 
         catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
 }

@@ -34,38 +34,45 @@
                 android:layout_width="179dp"
                 android:layout_height="179dp"
                 android:onClick="onSlikaDanes"
-                android:src="@drawable/lib_cross" />
+                android:src="@null" />
         </LinearLayout>
-
+
         <RelativeLayout
             android:id="@+id/relativeLayout1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:gravity="right" >
+
+            <TextView
+                android:id="@+id/vreme_tekst_datumsinhronizacije"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" android:gravity="right" android:textColor="#177BBD"/>
 
             <TextView
                 android:id="@+id/tv_kraj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/vreme_tekst_dan_danes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/tv_kraj"
-                android:layout_marginTop="39dp"
-                android:text="TextView"
-                android:textColor="#FFFFFF" />
+                android:layout_below="@+id/vreme_tekst_datumsinhronizacije"
+                android:text="TextView"/>
 
             <TextView
                 android:id="@+id/vreme_tekst_real_danes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/vreme_tekst_dan_danes"
+                android:layout_centerVertical="true"
+                android:text="TextView"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/vreme_tekst_dan_danes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/vreme_tekst_real_danes"
+                android:layout_alignParentLeft="true"
                 android:text="TextView"
                 android:textColor="#FFFFFF" />
 
@@ -100,7 +107,7 @@
                     android:layout_height="60dp"
                     android:layout_weight="0.74"
                     android:onClick="onSlikaDanesP1"
-                    android:src="@drawable/lib_cross" />
+                    android:src="@null" />
 
                 <TextView
                     android:id="@+id/vreme_tekst_dan_danesP1"
@@ -133,7 +140,7 @@
                     android:layout_height="60dp"
                     android:layout_weight="0.73"
                     android:onClick="onSlikaDanesP2"
-                    android:src="@drawable/lib_cross" />
+                    android:src="@null" />
 
                 <TextView
                     android:id="@+id/vreme_tekst_dan_danesP2"
@@ -166,7 +173,7 @@
                     android:layout_height="60dp"
                     android:layout_weight="0.74"
                     android:onClick="onSlikaDanesP3"
-                    android:src="@drawable/lib_cross" />
+                    android:src="@null" />
 
                 <TextView
                     android:id="@+id/vreme_tekst_dan_danesP3"
