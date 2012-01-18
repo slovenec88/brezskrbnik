@@ -2,6 +2,23 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="match_parent">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/ImageView01"
+            android:layout_width="match_parent"
+            android:layout_height="8px"
+            android:layout_gravity="top"
+            android:scaleType="fitXY"
+            android:src="@drawable/banner" />
+    </LinearLayout>
+
     <LinearLayout android:id="@+id/linearLayout1" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="1" android:layout_gravity="center|fill_vertical" android:gravity="center|center_vertical|center_horizontal|clip_vertical|fill_vertical">
         <ImageView android:id="@+id/imageView1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:src="@drawable/icon"></ImageView>
     </LinearLayout>

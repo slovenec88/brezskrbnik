@@ -4,6 +4,12 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <include
+        android:id="@+id/header_ref"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/headerlayout" />
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"

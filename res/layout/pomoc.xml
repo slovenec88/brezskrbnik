@@ -1,15 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent">
-    <LinearLayout android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:layout_width="match_parent" android:orientation="vertical">
-        <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_height="wrap_content" android:id="@+id/textView1" android:layout_width="wrap_content" android:text="V meniju nastavi IP ISS strežnika za nastavljanje budilke preko spleta in vpiši domači naslov, da te bo pot vodila naravnost domov."></TextView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/header_ref"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/headerlayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="V meniju nastavi IP ISS strežnika za nastavljanje budilke preko spleta in vpiši domači naslov, da te bo pot vodila naravnost domov."
+            android:textAppearance="?android:attr/textAppearanceSmall" >
+        </TextView>
     </LinearLayout>
-    <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_width="wrap_content" android:text="      Obvezno nastavi tudi telefonsko številko [SOS] v primeru, da rabiš pomoč!"></TextView>
-    <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:layout_height="wrap_content" android:id="@+id/textView3" android:layout_width="wrap_content" android:text="     Nek zvok mora biti poimenovan in v mapi sdcard/media/audio/ringtones/Old_Phone.mp3 "></TextView>
-    <TextView android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:id="@+id/textView4" android:layout_height="wrap_content" android:text="     Ko te aplikacija vpraša s katerim programom želiš uporabljati navigacijo, izberi Maps!"></TextView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="      Obvezno nastavi tudi telefonsko številko [SOS] v primeru, da rabiš pomoč!"
+        android:textAppearance="?android:attr/textAppearanceSmall" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="     Nek zvok mora biti poimenovan in v mapi sdcard/media/audio/ringtones/Old_Phone.mp3 "
+        android:textAppearance="?android:attr/textAppearanceSmall" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="     Ko te aplikacija vpraša s katerim programom želiš uporabljati navigacijo, izberi Maps!"
+        android:textAppearance="?android:attr/textAppearanceSmall" >
+    </TextView>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -29,7 +67,8 @@
             android:id="@+id/buttonCheckBoxi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" android:onClick="onKnofList"/>
+            android:onClick="onKnofList"
+            android:text="CheckBox" />
 
         <Button
             android:id="@+id/button1"
@@ -42,8 +81,8 @@
             android:id="@+id/buttonService"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Service" android:onClick="onService"/>
-
+            android:onClick="onService"
+            android:text="Service" />
     </LinearLayout>
-    
+
 </LinearLayout>

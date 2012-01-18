@@ -3,14 +3,27 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/header_ref"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/headerlayout" />
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal" >
-
+
         <LinearLayout
             android:id="@+id/linearLayout5"
             android:layout_width="wrap_content"
@@ -20,39 +33,37 @@
                 android:id="@+id/vreme_slika_danes"
                 android:layout_width="179dp"
                 android:layout_height="179dp"
-                android:src="@drawable/lib_cross" android:onClick="onSlikaDanes"/>
+                android:onClick="onSlikaDanes"
+                android:src="@drawable/lib_cross" />
         </LinearLayout>
-
+
         <LinearLayout
             android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
             android:layout_height="172dp"
             android:gravity="center"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/tv_kraj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
-
+
             <TextView
                 android:id="@+id/vreme_tekst_dan_danes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" 
-                android:textColor="#FFFFFF"/>
-            	
-
+                android:text="TextView"
+                android:textColor="#FFFFFF" />
+
             <TextView
                 android:id="@+id/vreme_tekst_real_danes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textColor="#FFFFFF" />
-
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -61,13 +72,13 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical" >
-
+
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" >
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout03"
                 android:layout_width="112dp"
@@ -75,14 +86,15 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical" >
-
+
                 <ImageView
                     android:id="@+id/vreme_slika_danesPlus1"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_weight="0.74"
-                    android:src="@drawable/lib_cross" android:onClick="onSlikaDanesP1"/>
-
+                    android:onClick="onSlikaDanesP1"
+                    android:src="@drawable/lib_cross" />
+
                 <TextView
                     android:id="@+id/vreme_tekst_dan_danesP1"
                     android:layout_width="wrap_content"
@@ -90,7 +102,7 @@
                     android:layout_gravity="center"
                     android:text="TextView"
                     android:textColor="#FFFFFF" />
-
+
                 <TextView
                     android:id="@+id/vreme_tekst_real_danesP1"
                     android:layout_width="wrap_content"
@@ -98,9 +110,8 @@
                     android:layout_gravity="center"
                     android:text="TextView"
                     android:textColor="#FFFFFF" />
-
             </LinearLayout>
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout05"
                 android:layout_width="112dp"
@@ -108,22 +119,23 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical" >
-
+
                 <ImageView
                     android:id="@+id/vreme_slika_danesPlus2"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_weight="0.73"
-                    android:src="@drawable/lib_cross" android:onClick="onSlikaDanesP2"/>
-
+                    android:onClick="onSlikaDanesP2"
+                    android:src="@drawable/lib_cross" />
+
                 <TextView
                     android:id="@+id/vreme_tekst_dan_danesP2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="TextView" 
-                    android:textColor="#FFFFFF"/>
-
+                    android:text="TextView"
+                    android:textColor="#FFFFFF" />
+
                 <TextView
                     android:id="@+id/vreme_tekst_real_danesP2"
                     android:layout_width="wrap_content"
@@ -131,9 +143,8 @@
                     android:layout_gravity="center"
                     android:text="TextView"
                     android:textColor="#FFFFFF" />
-
             </LinearLayout>
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout04"
                 android:layout_width="112dp"
@@ -141,14 +152,15 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical" >
-
+
                 <ImageView
                     android:id="@+id/vreme_slika_danesPlus3"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_weight="0.74"
-                    android:src="@drawable/lib_cross" android:onClick="onSlikaDanesP3"/>
-
+                    android:onClick="onSlikaDanesP3"
+                    android:src="@drawable/lib_cross" />
+
                 <TextView
                     android:id="@+id/vreme_tekst_dan_danesP3"
                     android:layout_width="wrap_content"
@@ -156,7 +168,7 @@
                     android:layout_gravity="center"
                     android:text="TextView"
                     android:textColor="#FFFFFF" />
-
+
                 <TextView
                     android:id="@+id/vreme_tekst_real_danesP3"
                     android:layout_width="wrap_content"
@@ -164,10 +176,8 @@
                     android:layout_gravity="center"
                     android:text="TextView"
                     android:textColor="#FFFFFF" />
-
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>
