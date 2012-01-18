@@ -9,4 +9,5 @@
     <string name="alarm_start">START alarm</string><string name="start_comp">Start -- Računalnik začne</string><string name="start_player">Start -- Igralec začne</string><string name="welcome"><b>Dobrodošli v igri Tic-Tac-Toe!</b></string><string name="explain1">explain1</string><string name="explain2">explain2</string><string name="player2_win">Računalnik je zmagovalec!</string><string name="player1_win">Vi ste zmagovalec!</string><string name="tie">Poizkusi znova..</string><string name="player2_turn">nadaljuj..</string><string name="player1_turn">Vaša poteza!</string>
      <string name="alarm_name">AlarmTest</string>
      <string name="btnPovezi">Poveži se na IIS strežnik</string>
+     <string name="posljisos">[Pošlji SOS!]</string>
 </resources>

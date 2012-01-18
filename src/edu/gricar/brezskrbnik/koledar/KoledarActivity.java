@@ -56,8 +56,12 @@ public class KoledarActivity extends Activity {
         tvkje = (EditText) findViewById(R.id.etDogodkiLokacija);
         tvopis = (EditText) findViewById(R.id.etDogodkiOpis);
         
-        koledarjiNaVoljoSo();
-        zacetnaFazapolnjena();
+        try {
+            koledarjiNaVoljoSo();
+            zacetnaFazapolnjena();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

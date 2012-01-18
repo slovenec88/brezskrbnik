@@ -1,18 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" android:orientation="vertical">
-    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout1" android:orientation="horizontal" android:layout_weight="1">
-        <ImageButton android:layout_width="wrap_content" android:id="@+id/imageButton1" android:layout_height="match_parent" android:layout_weight="1" android:background="@null" android:src="@drawable/opomniki" android:onClick="onOpomniki"></ImageButton>
-        <ImageButton android:layout_width="wrap_content" android:id="@+id/imageButton2" android:layout_weight="1" android:layout_height="match_parent" android:background="@null" android:src="@drawable/budilka" android:onClick="onBudilka"></ImageButton>
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            style="@style/styleName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onOpomniki"
+            android:src="@drawable/opomniki" >
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            style="@style/styleName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onBudilka"
+            android:src="@drawable/budilka" >
+        </ImageButton>
     </LinearLayout>
-    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout2" android:orientation="horizontal" android:layout_weight="1">
-        <LinearLayout android:layout_height="match_parent" android:layout_width="wrap_content" android:id="@+id/linearLayout3" android:layout_weight="1">
-            <ImageButton android:layout_width="wrap_content" android:id="@+id/imageButton3" android:layout_weight="1" android:layout_height="match_parent" android:background="@null" android:src="@drawable/navigacija" android:onClick="onNavigacija"></ImageButton>
-            <ImageButton android:layout_width="wrap_content" android:id="@+id/imageButton4" android:layout_weight="1" android:layout_height="match_parent" android:background="@null" android:src="@drawable/pomoc" android:onClick="onPomoc"></ImageButton>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                style="@style/styleName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onNavigacija"
+                android:src="@drawable/navigacija" >
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                style="@style/styleName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onPomoc"
+                android:src="@drawable/pomoc" >
+            </ImageButton>
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout android:id="@+id/linearLayout4" android:layout_height="wrap_content" android:layout_weight="0.2" android:layout_width="match_parent">
-        <Button android:layout_height="wrap_content" android:id="@+id/button1" android:onClick="OnSOS" android:text="[Pošlji SOS!]" android:background="#C70000" android:layout_width="match_parent"></Button>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#C70000"
+            android:onClick="OnSOS"
+            android:text="@string/posljisos" >
+        </Button>
     </LinearLayout>
+
 </LinearLayout>

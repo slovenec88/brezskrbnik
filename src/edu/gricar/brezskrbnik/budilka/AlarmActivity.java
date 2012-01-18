@@ -74,7 +74,12 @@ public class AlarmActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.alarmll);
-        showDialog(TIME_DIALOG_ID);
+        try {
+            showDialog(TIME_DIALOG_ID);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         app = (ApplicationBrezskrbnik) getApplication();
         button = (Button) findViewById(R.id.btnAlarm);
         button3 = (Button) findViewById(R.id.btnPovezi);
