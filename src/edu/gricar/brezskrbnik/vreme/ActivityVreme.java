@@ -4,8 +4,10 @@ import java.text.DateFormat;
 import java.util.Date;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -168,8 +170,12 @@ public class ActivityVreme extends Activity{
         }
 
         if (tvDanDanes.getText().toString().equalsIgnoreCase("")){
-            BackgroundAsyncTask mt = new BackgroundAsyncTask();
-            mt.execute(app);
+            if (preveriInternet()==true){
+                BackgroundAsyncTask mt = new BackgroundAsyncTask();
+                mt.execute(app);
+            }
+            else
+                Toast.makeText(this, "Vkljuèite omrežno povezavo!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -225,7 +231,7 @@ public class ActivityVreme extends Activity{
         tvDatumSinhro.setText("Posodobljeno!");
         shraniPodatke();
     }
-    
+
 
     public void nafilajSlike(){
         for (int i = 0; i < 4; i++){
@@ -354,6 +360,16 @@ public class ActivityVreme extends Activity{
         }
     }
 
+    private boolean preveriInternet() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm.getActiveNetworkInfo() != null
+                && cm.getActiveNetworkInfo().isAvailable()
+                && cm.getActiveNetworkInfo().isConnected()) {
+            return true;
+        } else 
+            return false;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -371,8 +387,12 @@ public class ActivityVreme extends Activity{
         switch (item.getItemId()) {
         case R.id.OsveziPodatke:
             try {
-                BackgroundAsyncTask mt = new BackgroundAsyncTask();
-                mt.execute(app);
+                if (preveriInternet()==true){
+                    BackgroundAsyncTask mt = new BackgroundAsyncTask();
+                    mt.execute(app);
+                }
+                else
+                    Toast.makeText(this, "Vkljuèite omrežno povezavo!", Toast.LENGTH_SHORT).show();
 
 
 
@@ -411,15 +431,15 @@ public class ActivityVreme extends Activity{
         protected void onPostExecute(String arg) {
             try {
                 setProgressBarIndeterminateVisibility(false);
-                nafilajSlike();
                 nafilajTekst();
-                
+                nafilajSlike();
+
                 SharedPreferences preferences = getPreferences(MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 Date d = new Date();
                 editor.putString("Cas", DateFormat.getDateTimeInstance().format(d));
                 editor.commit();
-                
+
             } catch (Exception e) {
                 Toast.makeText(ActivityVreme.this, "Napaka v komunikaciji ali neobstojeè kraj!",
                         Toast.LENGTH_LONG).show();
