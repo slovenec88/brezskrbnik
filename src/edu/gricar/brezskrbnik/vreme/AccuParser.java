@@ -22,20 +22,6 @@ public class AccuParser {
             e.printStackTrace();
         }
         return null;
-        //		CleanerProperties props = new CleanerProperties();
-        //		props.setTranslateSpecialEntities(true);
-        //		props.setTransResCharsToNCR(true);
-        //		props.setOmitComments(true);
-        //		TagNode tagNode;
-        //		try {
-        //			tagNode = new HtmlCleaner(props).clean(new URL(url));
-        //			return tagNode;
-        //		} catch (MalformedURLException e) {
-        //			e.printStackTrace();
-        //		} catch (IOException e) {
-        //			e.printStackTrace();
-        //		}
-        //		return null;
     }
 
     /**

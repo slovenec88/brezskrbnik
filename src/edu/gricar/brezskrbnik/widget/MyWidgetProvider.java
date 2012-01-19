@@ -6,6 +6,8 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 
 public class MyWidgetProvider extends AppWidgetProvider {
@@ -33,5 +35,6 @@ public class MyWidgetProvider extends AppWidgetProvider {
 
                 // Update the widgets via the service
                 context.startService(intent);
+
     }
 }

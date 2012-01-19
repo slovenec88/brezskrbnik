@@ -183,6 +183,7 @@ public class ActivityVreme extends Activity{
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
+        String opisS = app.vreme[0].getOpis();
         String ivslika1S = app.vreme[0].getSlika();
         String ivslika2S = app.vreme[1].getSlika();
         String ivslika3S = app.vreme[2].getSlika();
@@ -198,6 +199,7 @@ public class ActivityVreme extends Activity{
         String tvTempDanesPlus3S = tvTempDanesPlus3.getText().toString();
         String tvVremeKrajS = tvVremeKraj.getText().toString();
 
+        editor.putString("opis", opisS);
         editor.putString("ivslika1", ivslika1S);
         editor.putString("ivslika2", ivslika2S);
         editor.putString("ivslika3", ivslika3S);
